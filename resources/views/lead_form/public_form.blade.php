@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@yield('title') - {{ $general_settings['company_title'] ?? 'Taskify' }}</title>
+    <title>@yield('title') - {{ $general_settings['company_title'] ?? 'jazing' }}</title>
 
     <link rel="icon" type="image/x-icon"
         href="{{ asset($general_settings['favicon'] ?? 'storage/logos/default_favicon.png') }}" />

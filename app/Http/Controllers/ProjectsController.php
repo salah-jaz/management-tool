@@ -230,13 +230,13 @@ class ProjectsController extends Controller
      *       "id": 7,
      *       "first_name": "Madhavan",
      *       "last_name": "Vaidya",
-     *       "photo": "https://test-taskify.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png"
+     *       "photo": "https://test-jazing.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png"
      *     },
      *     {
      *       "id": 185,
      *       "first_name": "Admin",
      *       "last_name": "Test",
-     *       "photo": "https://test-taskify.infinitietech.com/storage/photos/no-image.jpg"
+     *       "photo": "https://test-jazing.infinitietech.com/storage/photos/no-image.jpg"
      *     }
      *   ],
      *   "clients": [
@@ -244,7 +244,7 @@ class ProjectsController extends Controller
      *       "id": 103,
      *       "first_name": "Test",
      *       "last_name": "Test",
-     *       "photo": "https://test-taskify.infinitietech.com/storage/photos/no-image.jpg"
+     *       "photo": "https://test-jazing.infinitietech.com/storage/photos/no-image.jpg"
      *     }
      *   ],
      *   "tags": [
@@ -604,13 +604,13 @@ class ProjectsController extends Controller
      *       "id": 7,
      *       "first_name": "Madhavan",
      *       "last_name": "Vaidya",
-     *       "photo": "https://test-taskify.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png"
+     *       "photo": "https://test-jazing.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png"
      *     },
      *     {
      *       "id": 185,
      *       "first_name": "Admin",
      *       "last_name": "Test",
-     *       "photo": "https://test-taskify.infinitietech.com/storage/photos/no-image.jpg"
+     *       "photo": "https://test-jazing.infinitietech.com/storage/photos/no-image.jpg"
      *     }
      *   ],
      *   "clients": [
@@ -618,7 +618,7 @@ class ProjectsController extends Controller
      *       "id": 103,
      *       "first_name": "Test",
      *       "last_name": "Test",
-     *       "photo": "https://test-taskify.infinitietech.com/storage/photos/no-image.jpg"
+     *       "photo": "https://test-jazing.infinitietech.com/storage/photos/no-image.jpg"
      *     }
      *   ],
      *   "tags": [
@@ -1235,13 +1235,13 @@ class ProjectsController extends Controller
      *           "id": 7,
      *           "first_name": "Madhavan",
      *           "last_name": "Vaidya",
-     *           "photo": "https://test-taskify.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png"
+     *           "photo": "https://test-jazing.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png"
      *         },
      *         {
      *           "id": 183,
      *           "first_name": "Girish",
      *           "last_name": "Thacker",
-     *           "photo": "https://test-taskify.infinitietech.com/storage/photos/no-image.jpg"
+     *           "photo": "https://test-jazing.infinitietech.com/storage/photos/no-image.jpg"
      *         }
      *       ],
      *       "clients": [],
@@ -1434,7 +1434,7 @@ class ProjectsController extends Controller
      * "id": 7,
      * "first_name": "Madhavan",
      * "last_name": "Vaidya",
-     * "photo": "https://test-taskify.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png"
+     * "photo": "https://test-jazing.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png"
      * }
      * ],
      * "clients": [
@@ -1442,7 +1442,7 @@ class ProjectsController extends Controller
      * "id": 103,
      * "first_name": "Test",
      * "last_name": "Test",
-     * "photo": "https://test-taskify.infinitietech.com/storage/photos/no-image.jpg"
+     * "photo": "https://test-jazing.infinitietech.com/storage/photos/no-image.jpg"
      * }
      * ],
      * "tags": [
@@ -2650,7 +2650,7 @@ class ProjectsController extends Controller
      * "id": 7,
      * "first_name": "Madhavan",
      * "last_name": "Vaidya",
-     * "photo": "https://test-taskify.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png"
+     * "photo": "https://test-jazing.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png"
      * }
      * ],
      * "clients": [
@@ -2658,7 +2658,7 @@ class ProjectsController extends Controller
      * "id": 103,
      * "first_name": "Test",
      * "last_name": "Test",
-     * "photo": "https://test-taskify.infinitietech.com/storage/photos/no-image.jpg"
+     * "photo": "https://test-jazing.infinitietech.com/storage/photos/no-image.jpg"
      * }
      * ],
      * "tags": [
@@ -2816,7 +2816,7 @@ class ProjectsController extends Controller
      * "id": 7,
      * "first_name": "Madhavan",
      * "last_name": "Vaidya",
-     * "photo": "https://test-taskify.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png"
+     * "photo": "https://test-jazing.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png"
      * }
      * ],
      * "clients": [
@@ -2824,7 +2824,7 @@ class ProjectsController extends Controller
      * "id": 103,
      * "first_name": "Test",
      * "last_name": "Test",
-     * "photo": "https://test-taskify.infinitietech.com/storage/photos/no-image.jpg"
+     * "photo": "https://test-jazing.infinitietech.com/storage/photos/no-image.jpg"
      * }
      * ],
      * "tags": [
@@ -3424,7 +3424,7 @@ class ProjectsController extends Controller
      *   "data":  {
      *       "id": "project_2",
      *       "topic": "hola",
-            "link": "https://dev-taskify.taskhub.company/projects/information/2",
+            "link": "https://dev-jazing.taskhub.company/projects/information/2",
             "isroot": true,
             "level": 1,
             "children": [
@@ -3436,7 +3436,7 @@ class ProjectsController extends Controller
                         {
                             "id": "task_4",
                             "topic": "Test",
-                            "link": "https://dev-taskify.taskhub.company/tasks/information/4",
+                            "link": "https://dev-jazing.taskhub.company/tasks/information/4",
                             "children": [
                                 {
                                     "id": "task_users_4",
@@ -3445,7 +3445,7 @@ class ProjectsController extends Controller
                                         {
                                             "id": "task_user_4_1",
                                             "topic": "Admin User",
-                                            "link": "https://dev-taskify.taskhub.company/users/profile/1"
+                                            "link": "https://dev-jazing.taskhub.company/users/profile/1"
                                         }
                                     ]
                                 },
@@ -3459,7 +3459,7 @@ class ProjectsController extends Controller
                         {
                             "id": "task_5",
                             "topic": "test",
-                            "link": "https://dev-taskify.taskhub.company/tasks/information/5",
+                            "link": "https://dev-jazing.taskhub.company/tasks/information/5",
                             "children": [
                                 {
                                     "id": "task_users_5",
@@ -3468,7 +3468,7 @@ class ProjectsController extends Controller
                                         {
                                             "id": "task_user_5_1",
                                             "topic": "Admin User",
-                                            "link": "https://dev-taskify.taskhub.company/users/profile/1"
+                                            "link": "https://dev-jazing.taskhub.company/users/profile/1"
                                         }
                                     ]
                                 },
@@ -3482,7 +3482,7 @@ class ProjectsController extends Controller
                         {
                             "id": "task_6",
                             "topic": "test 1",
-                            "link": "https://dev-taskify.taskhub.company/tasks/information/6",
+                            "link": "https://dev-jazing.taskhub.company/tasks/information/6",
                             "children": [
                                 {
                                     "id": "task_users_6",
@@ -3491,7 +3491,7 @@ class ProjectsController extends Controller
                                         {
                                             "id": "task_user_6_1",
                                             "topic": "Admin User",
-                                            "link": "https://dev-taskify.taskhub.company/users/profile/1"
+                                            "link": "https://dev-jazing.taskhub.company/users/profile/1"
                                         }
                                     ]
                                 },
@@ -3511,7 +3511,7 @@ class ProjectsController extends Controller
                         {
                             "id": "user_1",
                             "topic": "Admin User",
-                            "link": "https://dev-taskify.taskhub.company/users/profile/1"
+                            "link": "https://dev-jazing.taskhub.company/users/profile/1"
                         }
                     ]
                 },

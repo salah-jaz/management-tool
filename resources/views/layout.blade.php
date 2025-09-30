@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-    <title>@yield('title') - {{ $general_settings['company_title'] ?? 'Taskify' }}</title>
+    <title>@yield('title') - {{ $general_settings['company_title'] ?? 'Jazing' }}</title>
     <meta name="description" content="" />
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon"
@@ -166,7 +166,7 @@
 
 @if(config('constants.ALLOW_MODIFICATION') == '0')
 <!-- Floating Buy Now Button -->
-   @include('components.taskify-ecosystem-drawer')
+   @include('components.jazing-ecosystem-drawer')
 
 @endif
 
@@ -273,10 +273,10 @@
 <script>
     // const firebaseConfig = {
     //     apiKey: "AIzaSyACyBtmMz5PO_yQ_V3GTCRB9mlrP99ctN8",
-    //     authDomain: "taskify-210db.firebaseapp.com",
-    //     databaseURL: "https://taskify-210db-default-rtdb.firebaseio.com",
-    //     projectId: "taskify-210db",
-    //     storageBucket: "taskify-210db.appspot.com",
+    //     authDomain: "jazing-210db.firebaseapp.com",
+    //     databaseURL: "https://jazing-210db-default-rtdb.firebaseio.com",
+    //     projectId: "jazing-210db",
+    //     storageBucket: "jazing-210db.appspot.com",
     //     messagingSenderId: "208242375433",
     //     appId: "1:208242375433:web:cfaaeb51e3417c03e131d8",
     //     measurementId: "G-TN9S72E85S"

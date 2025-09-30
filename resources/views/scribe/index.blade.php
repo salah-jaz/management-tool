@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>Taskify API Documentation</title>
+    <title>jazing API Documentation</title>
     <meta charset="utf-8"/>
     <meta
         name="viewport"

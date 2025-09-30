@@ -14,7 +14,7 @@
                             <span class="app-brand-logo demo">
                                 <img src="{{asset($general_settings['full_logo'])}}" width="300px" alt="" />
                             </span>
-                            <!-- <span class="app-brand-text demo menu-text fw-bolder ms-2">Taskify</span> -->
+                            <!-- <span class="app-brand-text demo menu-text fw-bolder ms-2">jazing</span> -->
                         </a>
                     </div>
                     <!-- /Logo -->

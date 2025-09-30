@@ -1,7 +1,7 @@
 <?php return [
 
 
-'redirect_url' => 'https://test-taskify.infinitietech.com/settings/languages',
+'redirect_url' => 'https://test-jazing.infinitietech.com/settings/languages',
 'langcode' => 'en',
 'dashboard' => 'Dashboard',
 'total_projects' => 'Total Projects',

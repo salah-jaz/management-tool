@@ -503,7 +503,7 @@ class PaymentsController extends Controller
                 "first_name": "Admin",
                 "last_name": "User",
                 "email": "admin@gmail.com",
-                "photo": "https://dev-taskify.taskhub.company/storage/photos/C03PJmIQInts2j3O2on99Nilu45UcChrepcsIFxO.jpg"
+                "photo": "https://dev-jazing.taskhub.company/storage/photos/C03PJmIQInts2j3O2on99Nilu45UcChrepcsIFxO.jpg"
             },
             "invoice_id": null,
             "invoice": "-",

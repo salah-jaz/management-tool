@@ -291,7 +291,7 @@ class NotificationsController extends Controller
      *           "id": 183,
      *           "first_name": "Girish",
      *           "last_name": "Thacker",
-     *           "photo": "https://test-taskify.infinitietech.com/storage/photos/no-image.jpg"
+     *           "photo": "https://test-jazing.infinitietech.com/storage/photos/no-image.jpg"
      *         }
      *       ],
      *       "clients": [
@@ -299,7 +299,7 @@ class NotificationsController extends Controller
      *           "id": 102,
      *           "first_name": "Test",
      *           "last_name": "Client",
-     *           "photo": "https://test-taskify.infinitietech.com/storage/photos/no-image.jpg"
+     *           "photo": "https://test-jazing.infinitietech.com/storage/photos/no-image.jpg"
      *         }
      *       ],
      *       "type": "Task",

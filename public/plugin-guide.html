@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taskify Plugin Development Guide</title>
+    <title>jazing Plugin Development Guide</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
@@ -317,8 +317,8 @@
         <div class="container hero-content">
             <div class="row align-items-center">
                 <div class="col-lg-8">
-                    <h1 class="display-4 fw-bold mb-4">Taskify Plugin Development Guide</h1>
-                    <p class="lead mb-4">Build powerful extensions for Taskify with our comprehensive plugin architecture. Create seamless integrations that enhance productivity and extend functionality.</p>
+                    <h1 class="display-4 fw-bold mb-4">jazing Plugin Development Guide</h1>
+                    <p class="lead mb-4">Build powerful extensions for jazing with our comprehensive plugin architecture. Create seamless integrations that enhance productivity and extend functionality.</p>
                     <div class="d-flex gap-3 flex-wrap">
                         <button class="btn btn-primary btn-lg" onclick="scrollToSection('getting-started')">
                             <i class="fas fa-rocket me-2"></i>Get Started
@@ -397,7 +397,7 @@
                             <h2 class="section-title text-center">
                                 <i class="fas fa-info-circle me-3"></i>Introduction
                             </h2>
-                            <p class="lead">Taskify supports a robust plugin architecture that allows developers to extend the core functionality of the application. This guide will walk you through creating plugins that seamlessly integrate with Taskify's ecosystem.</p>
+                            <p class="lead">jazing supports a robust plugin architecture that allows developers to extend the core functionality of the application. This guide will walk you through creating plugins that seamlessly integrate with jazing's ecosystem.</p>
 
                             <div class="row mt-4">
                                 <div class="col-md-4">
@@ -433,7 +433,7 @@
                             <h2 class="section-title text-center">
                                 <i class="fas fa-folder-tree me-3"></i>Plugin Structure
                             </h2>
-                            <p>A Taskify plugin follows a specific directory structure. Here's the standard layout:</p>
+                            <p>A jazing plugin follows a specific directory structure. Here's the standard layout:</p>
 
                             <div class="directory-tree">
 <pre><code>plugins/
@@ -923,7 +923,7 @@ Route::prefix('yourplugin')->group(function () {
                                 <i class="fas fa-code me-3"></i>Example Plugin Walkthrough
                             </h2>
 
-                            <p class="lead text-center">Let's walk through creating a "Plugin Example" following the Taskify structure</p>
+                            <p class="lead text-center">Let's walk through creating a "Plugin Example" following the jazing structure</p>
 
                             <div class="row">
                                 <div class="col-md-4">
@@ -952,7 +952,7 @@ Route::prefix('yourplugin')->group(function () {
                                             <p class="text-muted">Set up the plugin.json file</p>
                                             <div class="code-block">
 <pre><code class="language-json">{
-    "name": "Taskify - Example Plugin",
+    "name": "jazing - Example Plugin",
     "slug": "example-plugin",
     "description": "Example functionality",
     "version": "1.0.0",
@@ -1244,7 +1244,7 @@ class YourPluginControllerTest extends TestCase
                                 <i class="fas fa-trophy me-3"></i>Congratulations!
                             </h2>
                             <p class="lead text-white mb-4">
-                                You now have a comprehensive understanding of Taskify plugin development.
+                                You now have a comprehensive understanding of jazing plugin development.
                                 The modular architecture allows for powerful extensions while maintaining clean separation of concerns.
                             </p>
                             <div class="d-flex justify-content-center gap-3 flex-wrap">
@@ -1267,8 +1267,8 @@ class YourPluginControllerTest extends TestCase
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h5><i class="fas fa-code me-2"></i>Taskify Plugin Development</h5>
-                    <p class="text-muted">Build powerful extensions for Taskify with our comprehensive plugin architecture.</p>
+                    <h5><i class="fas fa-code me-2"></i>jazing Plugin Development</h5>
+                    <p class="text-muted">Build powerful extensions for jazing with our comprehensive plugin architecture.</p>
                 </div>
                 <div class="col-md-6 text-md-end">
                     <h5>Quick Links</h5>
@@ -1282,7 +1282,7 @@ class YourPluginControllerTest extends TestCase
             </div>
             <hr class="my-4">
             <div class="text-center">
-                <p class="mb-0">&copy; 2024 Taskify Plugin Development Guide. Built with <i class="fas fa-heart text-danger"></i> and Bootstrap.</p>
+                <p class="mb-0">&copy; 2024 jazing Plugin Development Guide. Built with <i class="fas fa-heart text-danger"></i> and Bootstrap.</p>
             </div>
         </div>
     </footer>
@@ -1433,7 +1433,7 @@ class CleanupCommand extends Command
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'taskify-plugin-development-guide.html';
+            a.download = 'jazing-plugin-development-guide.html';
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);

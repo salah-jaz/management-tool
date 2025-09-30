@@ -59,7 +59,7 @@ class WorkspacesController extends Controller
      *       "id": 7,
      *       "first_name": "Madhavan",
      *       "last_name": "Vaidya",
-     *       "photo": "https://test-taskify.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png"
+     *       "photo": "https://test-jazing.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png"
      *     }
      *   ],
      *   "clients": [
@@ -67,7 +67,7 @@ class WorkspacesController extends Controller
      *       "id": 103,
      *       "first_name": "Test",
      *       "last_name": "Test",
-     *       "photo": "https://test-taskify.infinitietech.com/storage/photos/no-image.jpg"
+     *       "photo": "https://test-jazing.infinitietech.com/storage/photos/no-image.jpg"
      *     }
      *   ],
      *   "created_at": "07-08-2024 14:38:51",
@@ -333,7 +333,7 @@ class WorkspacesController extends Controller
      *           "id": 7,
      *           "first_name": "Madhavan",
      *           "last_name": "Vaidya",
-     *           "photo": "https://test-taskify.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png"
+     *           "photo": "https://test-jazing.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png"
      *         }
      *       ],
      *       "clients": [
@@ -341,7 +341,7 @@ class WorkspacesController extends Controller
      *           "id": 12,
      *           "first_name": "Client",
      *           "last_name": "Name",
-     *           "photo": "https://test-taskify.infinitietech.com/storage/photos/client-photo.png"
+     *           "photo": "https://test-jazing.infinitietech.com/storage/photos/client-photo.png"
      *         }
      *       ],
      *       "created_at": "20-07-2024 17:50:09",
@@ -512,7 +512,7 @@ class WorkspacesController extends Controller
      *       "id": 7,
      *       "first_name": "Madhavan",
      *       "last_name": "Vaidya",
-     *       "photo": "https://test-taskify.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png"
+     *       "photo": "https://test-jazing.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png"
      *     }
      *   ],
      *   "clients": [
@@ -520,7 +520,7 @@ class WorkspacesController extends Controller
      *       "id": 103,
      *       "first_name": "Test",
      *       "last_name": "Test",
-     *       "photo": "https://test-taskify.infinitietech.com/storage/photos/no-image.jpg"
+     *       "photo": "https://test-jazing.infinitietech.com/storage/photos/no-image.jpg"
      *     }
      *   ],
      *   "created_at": "07-08-2024 14:38:51",

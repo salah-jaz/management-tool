@@ -1,6 +1,6 @@
-# Taskify - Project & Task Management System 
+# Jazing - Project & Task Management System 
 
-Taskify is a **powerful Laravel-based Project & Task Management System** that helps you organize projects, manage teams, and streamline workflows effortlessly within your organization. 
+Jazing is a **powerful Laravel-based Project & Task Management System** that helps you organize projects, manage teams, and streamline workflows effortlessly within your organization. 
 
 It combines **clean design, deep insights, and robust functionality** to keep your projects, tasks, and teams aligned for optimal productivity.
 
@@ -26,7 +26,7 @@ It combines **clean design, deep insights, and robust functionality** to keep yo
 - Built-in chat with **live notifications (Pusher-supported)** to foster seamless team communication within projects.
 
 ### 📅 Meetings
-- Schedule and conduct **virtual meetings directly** within Taskify.
+- Schedule and conduct **virtual meetings directly** within Jazing.
 - Keep all discussions tied to relevant projects and tasks in one organized space.
 
 ### 🏢 Workspaces
@@ -57,7 +57,7 @@ It combines **clean design, deep insights, and robust functionality** to keep yo
 - Integrated system for **submitting, approving, and tracking leave requests** seamlessly.
 
 ### ⚙️ Customizable Settings
-- Fully customizable platform allowing you to tailor Taskify to your unique workflows and preferences.
+- Fully customizable platform allowing you to tailor Jazing to your unique workflows and preferences.
 
 ### 🔄 Auto-update System Updater
 - Keep your system updated with **automatic updates**, ensuring you always have the latest features and security improvements.

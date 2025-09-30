@@ -1,4 +1,4 @@
-# Taskify – Laravel Framework License Agreement
+# Jazing – Laravel Framework License Agreement
 
 Copyright © 2025  
 Developed & Maintained by **Infinitie Technologies**  
@@ -8,7 +8,7 @@ Website: [https://infinitietech.com](https://infinitietech.com)
 
 ## License
 
-Taskify is distributed under the **MIT License**, allowing you to use, modify, and distribute the software freely, provided that you include the original copyright and license notice.
+Jazing is distributed under the **MIT License**, allowing you to use, modify, and distribute the software freely, provided that you include the original copyright and license notice.
 
 For details, see [LICENSE](LICENSE).
 
@@ -16,9 +16,9 @@ For details, see [LICENSE](LICENSE).
 
 ## Third-Party Software
 
-Taskify integrates several third-party libraries, APIs, and frameworks to enhance functionality. Each library is used in compliance with its respective license, and users must adhere to their terms where applicable.
+Jazing integrates several third-party libraries, APIs, and frameworks to enhance functionality. Each library is used in compliance with its respective license, and users must adhere to their terms where applicable.
 
-Below is a list of **notable third-party technologies used in Taskify**:
+Below is a list of **notable third-party technologies used in Jazing**:
 
 | Component / Service                        | Purpose / Integration Area                 | License / Terms              | Website / Documentation                                  |
 |--------------------------------------------|--------------------------------------------|------------------------------|----------------------------------------------------------|
@@ -51,18 +51,18 @@ Below is a list of **notable third-party technologies used in Taskify**:
 | **FakerPHP Faker**                         | Data Generation for Testing                | MIT License                  | [FakerPHP](https://fakerphp.github.io/) |
 | **Mockery**                                | Mocking Framework for Testing              | BSD License                  | [Mockery](https://github.com/mockery/mockery) |
 
-> ⚠️ **Note**: Ensure compliance with each library's respective license. Taskify integrates these technologies solely to extend functionality, and Infinitie Technologies does not claim ownership of these third-party libraries.
+> ⚠️ **Note**: Ensure compliance with each library's respective license. Jazing integrates these technologies solely to extend functionality, and Infinitie Technologies does not claim ownership of these third-party libraries.
 
 ---
 
 ## Usage Terms
 
-By using Taskify, you agree to:
+By using Jazing, you agree to:
 
 ✅ Retain copyright notices.  
 ✅ Comply with third-party licenses.  
 ✅ Indemnify Infinitie Technologies against any misuse of the software.  
-✅ Acknowledge that Taskify is provided “as-is” without warranty of any kind.
+✅ Acknowledge that Jazing is provided “as-is” without warranty of any kind.
 
 For full details, refer to the [MIT License](LICENSE).
 
@@ -75,4 +75,4 @@ For full details, refer to the [MIT License](LICENSE).
 
 ---
 
-Thank you for choosing **Taskify** to streamline your project and team management workflow.
+Thank you for choosing **Jazing** to streamline your project and team management workflow.

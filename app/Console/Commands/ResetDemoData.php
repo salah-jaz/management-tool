@@ -40,15 +40,15 @@ class ResetDemoData extends Command
         $this->info('Dropping all tables...');
         $this->dropAllTables();
 
-        // Step 2: Reset the database using demo_data_taskify.sql
-        $sqlFilePath = public_path('assets/demo_data/demo_data_taskify.sql');
+        // Step 2: Reset the database using demo_data_jazing.sql
+        $sqlFilePath = public_path('assets/demo_data/demo_data_jazing.sql');
 
         if (file_exists($sqlFilePath)) {
             $this->info('Resetting the database...');
             $sql = file_get_contents($sqlFilePath);
 
             if (!$sql) {
-                $this->error('Failed to read demo_data_taskify.sql!');
+                $this->error('Failed to read demo_data_jazing.sql!');
                 return 1;
             }
 
@@ -58,7 +58,7 @@ class ResetDemoData extends Command
             DB::statement('SET FOREIGN_KEY_CHECKS=1;');
             $this->info('Database reset successfully!');
         } else {
-            $this->error('demo_data_taskify.sql file not found!');
+            $this->error('demo_data_jazing.sql file not found!');
             return 1;
         }
 

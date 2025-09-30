@@ -46,7 +46,7 @@ $pendingLeaveRequestsCount = $query->count();
             <span class="app-brand-logo demo">
                 <img src="{{ asset($general_settings['full_logo']) }}" width="200px" alt="" />
             </span>
-            <!-- <span class="app-brand-text demo menu-text fw-bolder ms-2">Taskify</span> -->
+            <!-- <span class="app-brand-text demo menu-text fw-bolder ms-2">Jazing</span> -->
         </a>
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large d-block d-xl-none ms-auto">
             <i class="bx bx-chevron-left bx-sm align-middle"></i>

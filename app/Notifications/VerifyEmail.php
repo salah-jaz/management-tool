@@ -29,7 +29,7 @@ class VerifyEmail extends VerifyEmailBase
         $verificationUrl = $this->verificationUrl($notifiable);
         $general_settings = get_settings('general_settings');
         $full_logo = !isset($general_settings['full_logo']) || empty($general_settings['full_logo']) ? 'storage/logos/default_full_logo.png' : 'storage/' . $general_settings['full_logo'];
-        $company_title = $general_settings['company_title'] ?? 'Taskify';
+        $company_title = $general_settings['company_title'] ?? 'jazing';
         $siteUrl = request()->getSchemeAndHttpHost();
         $fetched_data = Template::where('type', 'email')
             ->where('name', 'verify_email')

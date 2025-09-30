@@ -69,7 +69,7 @@ class SignUpController extends Controller
      * "state": null,
      * "country": null,
      * "zip": null,
-     * "photo": "https://test-taskify.infinitietech.com/storage/photos/no-image.jpg",
+     * "photo": "https://test-jazing.infinitietech.com/storage/photos/no-image.jpg",
      * "status": 0,
      * "created_at": "13-08-2024 14:59:38",
      * "updated_at": "13-08-2024 14:59:38"

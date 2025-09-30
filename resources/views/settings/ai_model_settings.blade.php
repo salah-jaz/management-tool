@@ -459,7 +459,7 @@
                     <h4>📌 Step 5: Save and Integrate</h4>
                     <ol>
                         <li>Once your API key and parameters are set, paste them into the appropriate configuration fields
-                            in Taskify.</li>
+                            in jazing.</li>
                         <li>Click <b>Save</b> to finalize the setup.</li>
                     </ol>
 
@@ -514,7 +514,7 @@
 
                     <h4>📌 Step 4: Save and Integrate</h4>
                     <ol>
-                        <li>Once you have your API key and parameters, paste them into the appropriate configuration fields in Taskify.</li>
+                        <li>Once you have your API key and parameters, paste them into the appropriate configuration fields in jazing.</li>
                         <li>Click <b>Save</b> to finalize your setup.</li>
                     </ol>
                 </div>

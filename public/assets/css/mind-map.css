@@ -406,33 +406,33 @@ jmnodes.theme-asbestos jmexpander {
 }
 jmnodes.theme-asbestos jmexpander:hover {
 }
-/* Custom Theme for Taskify */
+/* Custom Theme for jazing */
 
-jmnodes.theme-taskify jmnode {
+jmnodes.theme-jazing jmnode {
     background-color: #696cff; /* Primary color */
     color: #fcfdfd; /* Light color for text */
 }
 
-jmnodes.theme-taskify jmnode:hover {
+jmnodes.theme-jazing jmnode:hover {
     background-color: #8592a3; /* Info color for hover effect */
 }
 
-jmnodes.theme-taskify jmnode.selected {
+jmnodes.theme-jazing jmnode.selected {
     background-color: #1f5502; /* Success color for selected node */
     color: #fcfdfd; /* Light color for text */
 }
 
-jmnodes.theme-taskify jmnode.root {
+jmnodes.theme-jazing jmnode.root {
     background-color: #233446; /* Dark color for root node */
     color: #fcfdfd; /* Light color for text */
 }
 
-jmnodes.theme-taskify jmexpander {
+jmnodes.theme-jazing jmexpander {
     background-color: #ffab00; /* Warning color for expander */
     color: #fcfdfd; /* Light color for text */
 }
 
-jmnodes.theme-taskify jmexpander:hover {
+jmnodes.theme-jazing jmexpander:hover {
     background-color: #ff3e1d; /* Danger color for expander hover effect */
     color: #fcfdfd; /* Light color for text */
 }

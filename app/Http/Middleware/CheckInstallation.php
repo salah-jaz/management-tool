@@ -9,7 +9,7 @@ class CheckInstallation
 {
     public function handle($request, Closure $next)
     {
-        $sqlDumpPath = base_path('taskify.sql');
+        $sqlDumpPath = base_path('jazing.sql');
         $installViewPath = resource_path('views/install.blade.php');
         // dd($is_installation_completed);
         // Check if the installation has been completed

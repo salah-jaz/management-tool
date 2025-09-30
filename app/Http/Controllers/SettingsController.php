@@ -896,7 +896,7 @@ class SettingsController extends Controller
      *   "error": false,
      *   "message": "Settings retrieved successfully",
      *   "settings": {
-     *     "company_title": "Taskify",
+     *     "company_title": "jazing",
      *     "currency_full_form": "Indian Rupee",
      *     "currency_symbol": "₹",
      *     "currency_code": "INR",
@@ -911,9 +911,9 @@ class SettingsController extends Controller
      *     "toast_position": "toast-bottom-center",
      *     "toast_time_out": "2",
      *     "footer_text": "<p>made with ❤️ by <a href=\"https://www.infinitietech.com/\" target=\"_blank\" rel=\"noopener\">Infinitie Technologies</a></p>",
-     *     "full_logo": "https://test-taskify.infinitietech.com/storage/logos/zEy4tSCAFSMczWbOoxBZ3B43Nc9eeqMlNBXDrOzn.png",
+     *     "full_logo": "https://test-jazing.infinitietech.com/storage/logos/zEy4tSCAFSMczWbOoxBZ3B43Nc9eeqMlNBXDrOzn.png",
      *     "half_logo": null,
-     *     "favicon": "https://test-taskify.infinitietech.com/storage/logos/2FZTNY1qDTz7CTtwWC8Hh1eY4l7cIHgOXG2stVIU.png"
+     *     "favicon": "https://test-jazing.infinitietech.com/storage/logos/2FZTNY1qDTz7CTtwWC8Hh1eY4l7cIHgOXG2stVIU.png"
      *   }
      * }
      *
@@ -970,8 +970,8 @@ class SettingsController extends Controller
      * @urlParam variable string required The variable type for which settings are to be stored. Must be one of the following: general_settings, pusher_settings, email_settings, media_storage_settings, sms_gateway_settings, whatsapp_settings, privacy_policy, about_us, terms_conditions. Example: general_settings
      *
      * @bodyParam variable string required The variable type for which settings are to be stored. Must be one of the following: general_settings, pusher_settings, email_settings, media_storage_settings, sms_gateway_settings, whatsapp_settings, privacy_policy, about_us, terms_conditions. Example: general_settings
-     * @bodyParam company_title string required The title of the company. Example: Taskify
-     * @bodyParam site_url string required The URL of the site. Example: https://www.taskify.com
+     * @bodyParam company_title string required The title of the company. Example: jazing
+     * @bodyParam site_url string required The URL of the site. Example: https://www.jazing.com
      * @bodyParam timezone string required The timezone of the site. Example: Asia/Kolkata
      * @bodyParam currency_full_form string required The full form of the currency. Example: Indian Rupee
      * @bodyParam currency_symbol string required The symbol of the currency. Example: ₹

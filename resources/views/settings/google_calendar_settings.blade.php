@@ -77,7 +77,7 @@
                     <ol>
                         <li>Go to <a href="https://console.cloud.google.com/" target="_blank">Google Cloud Console</a>.</li>
                         <li>Click <b>Select a Project</b> → <b>New Project</b>.</li>
-                        <li>Enter a <b>Project Name</b> (e.g., Taskify Calendar).</li>
+                        <li>Enter a <b>Project Name</b> (e.g., jazing Calendar).</li>
                         <li>Click <b>Create</b> and wait for the project to be initialized.</li>
                     </ol>
                     <a href="{{ asset('storage/google-calendar/create_new_project.png') }}" data-lightbox="google-calendar"
@@ -138,9 +138,9 @@
                             class="img-fluid mb-3 rounded border shadow-sm">
                     </a>
 
-                    <h4>📌 Step 6: Update Taskify Settings</h4>
+                    <h4>📌 Step 6: Update jazing Settings</h4>
                     <ol>
-                        <li>Go to Taskify and paste your <b>API Key</b> and <b>Calendar ID</b>.</li>
+                        <li>Go to jazing and paste your <b>API Key</b> and <b>Calendar ID</b>.</li>
                         <li>Click <b>Update</b>.</li>
                     </ol>
 

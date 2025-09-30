@@ -1,7 +1,7 @@
 <?php return [
 
 
-    'redirect_url' => 'https://dev-taskify.taskhub.company/settings/languages',
+    'redirect_url' => 'https://dev-jazing.taskhub.company/settings/languages',
 'langcode' => 'hn',
 'dashboard' => 'डैशबोर्ड',
 'total_projects' => 'कुल परियोजनाएँ',

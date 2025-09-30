@@ -2399,10 +2399,10 @@ html:not([dir="rtl"]) .timeline-item {
         right: 15px;
     }
 }
-/* Taskify Ecosystem Drawer Custom Styles */
+/* Jazing Ecosystem Drawer Custom Styles */
 
 /* Floating Action Button */
-.taskify-fab {
+.jazing-fab {
     position: fixed;
     top: 50%;
     right: 20px;
@@ -2422,7 +2422,7 @@ html:not([dir="rtl"]) .timeline-item {
 }
 
 /* Product Card Hover */
-.taskify-product-card:hover {
+.jazing-product-card:hover {
     transform: translateY(-2px);
     transition: transform 0.2s ease-in-out;
 }
@@ -2434,27 +2434,27 @@ html:not([dir="rtl"]) .timeline-item {
 }
 
 /* Product Icon Sizing */
-.taskify-product-icon {
+.jazing-product-icon {
     font-size: 2.5rem;
 }
 
 /* Product Image Styling */
-.taskify-product-image {
+.jazing-product-image {
     height: 140px;
     object-fit: cover;
 }
 
 /* Responsive Adjustments */
 @media (max-width: 576px) {
-    #taskifyEcosystemDrawer {
+    #jazingEcosystemDrawer {
         --bs-offcanvas-width: 100vw;
     }
-    .taskify-fab {
+    .jazing-fab {
         right: 15px;
         width: 48px;
         height: 48px;
     }
-    .taskify-fab i {
+    .jazing-fab i {
         font-size: 1.2rem;
     }
 }

@@ -67,7 +67,7 @@ class LeaveRequestController extends Controller
      * "data": {
      *   "id": 187,
      *   "user_name": "Madhavan Vaidya",
-     *   "user_photo": "https://test-taskify.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png",
+     *   "user_photo": "https://test-jazing.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png",
      *   "action_by": null,
      *   "action_by_id": null,
      *   "from_date": "Wed, 07-08-2024",
@@ -535,7 +535,7 @@ class LeaveRequestController extends Controller
      *     {
      *       "id": 175,
      *       "user_name": "Admin Test",
-     *       "user_photo": "https://test-taskify.infinitietech.com/storage/photos/no-image.jpg",
+     *       "user_photo": "https://test-jazing.infinitietech.com/storage/photos/no-image.jpg",
      *       "action_by": null,
      *       "from_date": "Mon, 29-07-2024",
      *       "to_date": "Mon, 29-07-2024",
@@ -548,7 +548,7 @@ class LeaveRequestController extends Controller
      *           "id": 183,
      *           "first_name": "Girish",
      *           "last_name": "Thacker",
-     *           "photo": "https://test-taskify.infinitietech.com/storage/photos/no-image.jpg"
+     *           "photo": "https://test-jazing.infinitietech.com/storage/photos/no-image.jpg"
      *         }
      *       ],
      *       "created_at": "29-07-2024 10:02:45",
@@ -716,7 +716,7 @@ class LeaveRequestController extends Controller
      * "data": {
      *   "id": 187,
      *   "user_name": "Madhavan Vaidya",
-     *   "user_photo": "https://test-taskify.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png",
+     *   "user_photo": "https://test-jazing.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png",
      *   "action_by": null,
      *   "action_by_id": null,
      *   "from_date": "Wed, 07-08-2024",

@@ -69,7 +69,7 @@ class MeetingsController extends Controller
      *       "id": 7,
      *       "first_name": "Madhavan",
      *       "last_name": "Vaidya",
-     *       "photo": "https://test-taskify.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png"
+     *       "photo": "https://test-jazing.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png"
      *     }
      *   ],
      *   "clients": [
@@ -77,7 +77,7 @@ class MeetingsController extends Controller
      *       "id": 173,
      *       "first_name": "666",
      *       "last_name": "666",
-     *       "photo": "https://test-taskify.infinitietech.com/storage/photos/no-image.jpg"
+     *       "photo": "https://test-jazing.infinitietech.com/storage/photos/no-image.jpg"
      *     }
      *   ],
      *   "status": "Ongoing",
@@ -441,7 +441,7 @@ class MeetingsController extends Controller
      *           "id": 7,
      *           "first_name": "Madhavan",
      *           "last_name": "Vaidya",
-     *           "photo": "https://test-taskify.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png"
+     *           "photo": "https://test-jazing.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png"
      *         }
      *       ],
      *       "clients": [],
@@ -636,7 +636,7 @@ class MeetingsController extends Controller
      *       "id": 7,
      *       "first_name": "Madhavan",
      *       "last_name": "Vaidya",
-     *       "photo": "https://test-taskify.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png"
+     *       "photo": "https://test-jazing.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png"
      *     }
      *   ],
      *   "clients": [
@@ -644,7 +644,7 @@ class MeetingsController extends Controller
      *       "id": 173,
      *       "first_name": "666",
      *       "last_name": "666",
-     *       "photo": "https://test-taskify.infinitietech.com/storage/photos/no-image.jpg"
+     *       "photo": "https://test-jazing.infinitietech.com/storage/photos/no-image.jpg"
      *     }
      *   ],
      *   "status": "Ongoing",

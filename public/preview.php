@@ -6,24 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO Meta Tags -->
-    <title>Taskify - Project & Task Management Solution</title>
-    <meta name="description" content="Taskify - All-in-one project management, task management, CRM, and productivity tool powered by Laravel 10">
-    <meta name="keywords" content="taskify, project management, task management, CRM, productivity tool">
+    <title>jazing - Project & Task Management Solution</title>
+    <meta name="description" content="jazing - All-in-one project management, task management, CRM, and productivity tool powered by Laravel 10">
+    <meta name="keywords" content="jazing, project management, task management, CRM, productivity tool">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://taskify.taskhub.company/">
-    <meta property="og:title" content="Taskify - Project & Task Management Solution">
-    <meta property="og:image" content="https://taskify.taskhub.company/storage/logos/default_favicon.png">
+    <meta property="og:url" content="https://jazing.taskhub.company/">
+    <meta property="og:title" content="jazing - Project & Task Management Solution">
+    <meta property="og:image" content="https://jazing.taskhub.company/storage/logos/default_favicon.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://taskify.taskhub.company/">
-    <meta property="twitter:title" content="Taskify - Project & Task Management Solution">
-    <meta property="twitter:image" content="https://taskify.taskhub.company/storage/logos/default_favicon.png">
+    <meta property="twitter:url" content="https://jazing.taskhub.company/">
+    <meta property="twitter:title" content="jazing - Project & Task Management Solution">
+    <meta property="twitter:image" content="https://jazing.taskhub.company/storage/logos/default_favicon.png">
 
     <!-- Favicon -->
-    <link rel="icon" href="https://taskify.taskhub.company/storage/logos/default_favicon.png" type="image/png">
+    <link rel="icon" href="https://jazing.taskhub.company/storage/logos/default_favicon.png" type="image/png">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -737,17 +737,17 @@
         <div class="container">
             <div style="position: relative; display: inline-block;">
                 <div class="logo-glow"></div>
-                <img src="https://taskify.taskhub.company/storage/logos/default_favicon.png" alt="Taskify Logo" class="logo">
+                <img src="https://jazing.taskhub.company/storage/logos/default_favicon.png" alt="jazing Logo" class="logo">
             </div>
 
-            <h1>Taskify</h1>
+            <h1>jazing</h1>
             <p class="subtitle">
                 The <span class="highlight">cutting-edge</span> project management, task management, CRM and productivity tool.
                 Your all-in-one solution for seamless project coordination and team collaboration.
             </p>
 
             <div class="buttons-container">
-                <a href="https://play.google.com/store/apps/details?id=com.taskify.management" target="_blank" rel="noopener" class="btn btn-primary">
+                <a href="https://play.google.com/store/apps/details?id=com.jazing.management" target="_blank" rel="noopener" class="btn btn-primary">
                     <i class="fab fa-android icon-android"></i>
                     Download on Google Play
                 </a>
@@ -757,7 +757,7 @@
                     Download on Test Flight
                 </a>
 
-                <a href="https://taskify.taskhub.company/" target="_blank" rel="noopener" class="btn btn-neutral">
+                <a href="https://jazing.taskhub.company/" target="_blank" rel="noopener" class="btn btn-neutral">
                     <i class="fas fa-globe icon-web"></i>
                     Try Web Demo
                 </a>
@@ -782,7 +782,7 @@
 
     <footer>
         <div class="footer-content">
-            <div>&copy; <span id="currentYear"></span> Taskify. All rights reserved.</div>
+            <div>&copy; <span id="currentYear"></span> jazing. All rights reserved.</div>
             <div class="social-links">
                 <a href="https://www.facebook.com/infinitietechnologies/" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
                 <a href="https://in.linkedin.com/company/infinitie-technologies" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>

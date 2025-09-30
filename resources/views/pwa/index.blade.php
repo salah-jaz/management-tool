@@ -38,8 +38,8 @@
                 @endif
 
                 <form method="POST" action="{{ route('pwa-settings.update') }}" enctype="multipart/form-data"
-                    class="needs-validation" novalidate data-original-name="{{ $pwaSettings['name'] ?? 'Taskify' }}"
-                    data-original-short-name="{{ $pwaSettings['short_name'] ?? 'Taskify' }}"
+                    class="needs-validation" novalidate data-original-name="{{ $pwaSettings['name'] ?? 'jazing' }}"
+                    data-original-short-name="{{ $pwaSettings['short_name'] ?? 'jazing' }}"
                     data-original-theme-color="{{ $pwaSettings['theme_color'] ?? '#000000' }}"
                     data-original-background-color="{{ $pwaSettings['background_color'] ?? '#ffffff' }}"
                     data-original-description="{{ $pwaSettings['description'] ?? 'A task management app to boost productivity' }}">
@@ -52,7 +52,7 @@
                             <label class="form-label fw-medium" for="name">Name <span
                                     class="text-danger">*</span></label>
                             <input type="text" name="name" id="name" class="form-control rounded-3"
-                                value="{{ old('name', $pwaSettings['name'] ?? 'Taskify') }}" required>
+                                value="{{ old('name', $pwaSettings['name'] ?? 'jazing') }}" required>
                             @error('name')
                                 <div class="text-danger small mt-1">{{ $message }}</div>
                             @enderror
@@ -63,7 +63,7 @@
                             <label class="form-label fw-medium" for="short_name">Short Name <span
                                     class="text-danger">*</span></label>
                             <input type="text" name="short_name" id="short_name" class="form-control rounded-3"
-                                value="{{ old('short_name', $pwaSettings['short_name'] ?? 'Taskify') }}" required>
+                                value="{{ old('short_name', $pwaSettings['short_name'] ?? 'jazing') }}" required>
                             @error('short_name')
                                 <div class="text-danger small mt-1">{{ $message }}</div>
                             @enderror

@@ -39,7 +39,7 @@ class AppServiceProvider extends ServiceProvider
             'half_logo' => 'storage/logos/default_half_logo.png',
             'favicon' => 'storage/logos/default_favicon.png',
             'footer_logo' => 'storage/logos/footer_logo.png',
-            'company_title' => 'Taskify',
+            'company_title' => 'Jazing',
             'currency_symbol' => '₹',
             'currency_full_form' => 'Indian Rupee',
             'currency_code' => 'INR',
@@ -440,8 +440,8 @@ class AppServiceProvider extends ServiceProvider
     private function setPwaConfig(array $pwaSettings): void
     {
         $configMap = [
-            'laravelpwa.manifest.name' => $pwaSettings['name'] ?? 'Taskify',
-            'laravelpwa.manifest.short_name' => $pwaSettings['short_name'] ?? 'Taskify',
+            'laravelpwa.manifest.name' => $pwaSettings['name'] ?? 'Jazing',
+            'laravelpwa.manifest.short_name' => $pwaSettings['short_name'] ?? 'Jazing',
             'laravelpwa.manifest.description' => $pwaSettings['description'] ?? '',
             'laravelpwa.manifest.theme_color' => $pwaSettings['theme_color'] ?? '#000000',
             'laravelpwa.manifest.background_color' => $pwaSettings['background_color'] ?? '#ffffff',

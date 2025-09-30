@@ -847,7 +847,7 @@ class EstimatesInvoicesController extends Controller
         $general_settings = get_settings('general_settings');
 
         $logo = !isset($general_settings['full_logo']) || empty($general_settings['full_logo']) ? 'storage/logos/default_full_logo.png' : 'storage/' . $general_settings['full_logo'];
-        $company_title = $general_settings['company_title'] ?? 'Taskify';
+        $company_title = $general_settings['company_title'] ?? 'jazing';
         $addressParts = [
             $estimate_invoice->city ?? '',
             $estimate_invoice->state ?? '',

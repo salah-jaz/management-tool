@@ -1151,7 +1151,7 @@ if (!function_exists('sendWhatsAppNotification')) {
         $msg = $itemData ? get_message($itemData, $recipient, 'whatsapp') : $message;
         $whatsapp_settings = get_settings('whatsapp_settings', true);
         $general_settings = get_settings('general_settings');
-        $company_title = $general_settings['company_title'] ?? 'Taskify';
+        $company_title = $general_settings['company_title'] ?? 'Jazing';
         $client = new GuzzleHttpClient();
         try {
             $response = $client->post('https://graph.facebook.com/v20.0/' . $whatsapp_settings['whatsapp_phone_number_id'] . '/messages', [
@@ -1165,7 +1165,7 @@ if (!function_exists('sendWhatsAppNotification')) {
                     'to' => $recipient->country_code . $recipient->phone,
                     'type' => 'template',
                     'template' => [
-                        'name' => 'taskify_saas_notification',
+                        'name' => 'jazing_saas_notification',
                         'language' => [
                             'code' => 'en'
                         ],
@@ -1227,7 +1227,7 @@ if (!function_exists('sendSlackNotification')) {
             $slackMessage = [
                 'channel' => $userId,
                 'text' => $message,
-                'username' => 'Taskify Notification',
+                'username' => 'Jazing Notification',
                 'icon_emoji' => ':office:',
             ];
             try {
@@ -1336,7 +1336,7 @@ if (!function_exists('get_message')) {
     {
         $authUser = getAuthenticatedUser();
         $general_settings = get_settings('general_settings');
-        $company_title = $general_settings['company_title'] ?? 'Taskify';
+        $company_title = $general_settings['company_title'] ?? 'Jazing';
         $siteUrl = $general_settings['site_url'] ?? request()->getSchemeAndHttpHost();
         $fetched_data = Template::where('type', $type)
             ->where('name', $data['type'] . '_assignment')
@@ -2157,7 +2157,7 @@ if (!function_exists('getTitle')) {
         }
         if ($companyTitle === null) {
             $general_settings = get_settings('general_settings');
-            $companyTitle = $general_settings['company_title'] ?? 'Taskify';
+            $companyTitle = $general_settings['company_title'] ?? 'Jazing';
         }
         $fetched_data = Template::where('type', $type)
             ->where('name', $data['type'] . '_assignment')
@@ -5026,7 +5026,7 @@ if (!function_exists('generate_description_openrouter')) {
                     'headers' => [
                         'Authorization' => 'Bearer ' . $apiKey,
                         'HTTP-Referer' => config('app.url'),
-                        'X-Title' => 'Taskify', // Optional: Name your app
+                        'X-Title' => 'Jazing', // Optional: Name your app
                         'Content-Type' => 'application/json',
                     ],
                     'json' => [

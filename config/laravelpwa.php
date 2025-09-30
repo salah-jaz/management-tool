@@ -1,14 +1,14 @@
 <?php
 
 return [
-    'name' => env('APP_NAME', 'Taskify'),
+    'name' => env('APP_NAME', 'jazing'),
 
     'manifest' => [
-        'name' => env('APP_NAME', 'Taskify'),
-        'short_name' => 'Taskify',
+        'name' => env('APP_NAME', 'jazing'),
+        'short_name' => 'jazing',
         'start_url' => '/home',
         'background_color' => '#ffffff',
-        'description' => 'Taskify helps you manage tasks efficiently and collaboratively.',
+        'description' => 'jazing helps you manage tasks efficiently and collaboratively.',
         'theme_color' => '#000000',
         'display' => 'standalone',
         'orientation' => 'any',
@@ -43,7 +43,7 @@ return [
             //         'sizes' => '1920x980',
             //         'type' => 'image/png',
             //         'form_factor' => 'wide',
-            //         'label' => 'Taskify dashboard'
+            //         'label' => 'jazing dashboard'
             //     ],
             // ]
         ],

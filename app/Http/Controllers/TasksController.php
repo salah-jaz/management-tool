@@ -113,7 +113,7 @@ class TasksController extends Controller
      *       "id": 7,
      *       "first_name": "Madhavan",
      *       "last_name": "Vaidya",
-     *       "photo": "https://test-taskify.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png"
+     *       "photo": "https://test-jazing.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png"
      *     }
      *   ],
      *   "user_id": [1,2],
@@ -122,7 +122,7 @@ class TasksController extends Controller
      *       "id": 173,
      *       "first_name": "666",
      *       "last_name": "666",
-     *       "photo": "https://test-taskify.infinitietech.com/storage/photos/no-image.jpg"
+     *       "photo": "https://test-jazing.infinitietech.com/storage/photos/no-image.jpg"
      *     }
      *   ],
      *   "start_date": "07-08-2024",
@@ -451,7 +451,7 @@ class TasksController extends Controller
      *       "id": 7,
      *       "first_name": "Madhavan",
      *       "last_name": "Vaidya",
-     *       "photo": "https://test-taskify.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png"
+     *       "photo": "https://test-jazing.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png"
      *     }
      *   ],
      *   "clients": [
@@ -459,7 +459,7 @@ class TasksController extends Controller
      *       "id": 173,
      *       "first_name": "666",
      *       "last_name": "666",
-     *       "photo": "https://test-taskify.infinitietech.com/storage/photos/no-image.jpg"
+     *       "photo": "https://test-jazing.infinitietech.com/storage/photos/no-image.jpg"
      *     }
      *   ],
      *   "start_date": "07-08-2024",
@@ -1171,7 +1171,7 @@ class TasksController extends Controller
      *           "id": 7,
      *           "first_name": "Madhavan",
      *           "last_name": "Vaidya",
-     *           "photo": "https://test-taskify.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png"
+     *           "photo": "https://test-jazing.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png"
      *         }
      *       ],
      *       "clients": [
@@ -1179,7 +1179,7 @@ class TasksController extends Controller
      *           "id": 102,
      *           "first_name": "Test",
      *           "last_name": "Client",
-     *           "photo": "https://test-taskify.infinitietech.com/storage/photos/no-image.jpg"
+     *           "photo": "https://test-jazing.infinitietech.com/storage/photos/no-image.jpg"
      *         }
      *       ],
      *       "start_date": "23-07-2024",
@@ -1486,7 +1486,7 @@ class TasksController extends Controller
      * "id": 7,
      * "first_name": "Madhavan",
      * "last_name": "Vaidya",
-     * "photo": "https://test-taskify.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png"
+     * "photo": "https://test-jazing.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png"
      * }
      * ],
      * "clients": [
@@ -1494,7 +1494,7 @@ class TasksController extends Controller
      * "id": 173,
      * "first_name": "666",
      * "last_name": "666",
-     * "photo": "https://test-taskify.infinitietech.com/storage/photos/no-image.jpg"
+     * "photo": "https://test-jazing.infinitietech.com/storage/photos/no-image.jpg"
      * }
      * ],
      * "start_date": "20-08-2024",
@@ -2013,7 +2013,7 @@ class TasksController extends Controller
      * "id": 7,
      * "first_name": "Madhavan",
      * "last_name": "Vaidya",
-     * "photo": "https://test-taskify.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png"
+     * "photo": "https://test-jazing.infinitietech.com/storage/photos/yxNYBlFLALdLomrL0JzUY2USPLILL9Ocr16j4n2o.png"
      * }
      * ],
      * "clients": [
@@ -2021,7 +2021,7 @@ class TasksController extends Controller
      * "id": 173,
      * "first_name": "666",
      * "last_name": "666",
-     * "photo": "https://test-taskify.infinitietech.com/storage/photos/no-image.jpg"
+     * "photo": "https://test-jazing.infinitietech.com/storage/photos/no-image.jpg"
      * }
      * ],
      * "start_date": "20-08-2024",

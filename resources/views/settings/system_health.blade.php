@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Welcome to Taskify')
+@section('title', 'Welcome to Jazing')
 
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
@@ -8,7 +8,7 @@
                 <div class="card border-0 shadow-sm">
                     <div class="card-header bg-label-success py-3">
                         <h5 class="text-success fw-bold mb-0">
-                            <i class="bx bx-check-circle me-2"></i>Welcome to Taskify
+                            <i class="bx bx-check-circle me-2"></i>Welcome to Jazing
                         </h5>
                     </div>
                     <div class="card-body text-center">
@@ -17,7 +17,7 @@
                         </div>
                         <h4 class="fw-bold mb-3">System Ready!</h4>
                         <p class="text-muted mb-4">
-                            Your Taskify project management system is ready to use. No purchase code validation required.
+                            Your Jazing project management system is ready to use. No purchase code validation required.
                         </p>
                         <a href="{{ route('home.index') }}" class="btn btn-primary btn-lg">
                             <i class="bx bx-home me-1"></i> Go to Dashboard

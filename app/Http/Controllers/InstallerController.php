@@ -99,7 +99,7 @@ class InstallerController extends Controller
 
         // Import the SQL dump file
         $installViewPath = resource_path('views/install.blade.php');
-        $sqlDumpPath = base_path('taskify.sql');
+        $sqlDumpPath = base_path('jazing.sql');
         if (file_exists($sqlDumpPath)) {
            // Clear the database
             DB::statement('SET FOREIGN_KEY_CHECKS = 0'); // Disable foreign key checks
