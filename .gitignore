@@ -1,0 +1,97 @@
+# Laravel
+/vendor/
+node_modules/
+.env
+.env.*
+!.env.example
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+
+# IDE & Editor files
+/.idea
+/.vscode
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Laravel specific
+/public/storage
+/storage/*.key
+/storage/app/public
+/storage/framework/cache/*
+!/storage/framework/cache/.gitignore
+/storage/framework/sessions/*
+!/storage/framework/sessions/.gitignore
+/storage/framework/testing/*
+!/storage/framework/testing/.gitignore
+/storage/framework/views/*
+!/storage/framework/views/.gitignore
+/storage/logs/*
+!/storage/logs/.gitignore
+/bootstrap/cache/*
+!/bootstrap/cache/.gitignore
+
+# Laravel Mix & Vite
+/public/hot
+/public/mix-manifest.json
+/public/build/
+/build/
+vite.config.js
+vite.config.ts
+
+# Testing
+/coverage
+/.phpunit.result.cache
+/phpunit.xml
+
+# Documentation
+/.scribe/
+/public/docs/
+/storage/api-docs/
+
+# Custom project files
+/public/assets/demo_data/public.zip
+error_log
+hcontroler.php
+
+# Composer
+composer.phar
+
+# NPM
+package-lock.json
+yarn.lock
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# Cache files
+*.cache
+.cache/
+
+# Database
+*.sqlite
+*.db
+
+# SSL certificates
+*.pem
+*.crt
+*.key
