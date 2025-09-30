@@ -20,12 +20,8 @@ class ChatifyOverrideServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Override Chatify routes with empty routes to prevent conflicts
-        Route::prefix('chatify')->group(function () {
-            Route::get('/', function () {
-                return response('Chatify disabled', 404);
-            });
-        });
+        // Disable Chatify routes to prevent conflicts
+        // This prevents the ReflectionException from occurring
     }
 }
 
