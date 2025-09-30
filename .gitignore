@@ -62,7 +62,7 @@ vite.config.ts
 /storage/api-docs/
 
 # Custom project files
-/public/assets/demo_data/public.zip
+/public/assets/demo_data/
 error_log
 hcontroler.php
 
