@@ -160,9 +160,11 @@
     -moz-transition: -moz-transform 0.15s linear;
     -o-transition: -o-transform 0.15s linear;
     -webkit-transition: -webkit-transform 0.15s linear;
+    transition: transform 0.15s linear;
     -webkit-transform: rotate(-2deg);
     -o-transform: rotate(-2deg);
     -moz-transform: rotate(-2deg);
+    transform: rotate(-2deg);
 }
 
 .sticky-notes .sticky-note {
@@ -175,6 +177,7 @@
     -o-transform: rotate(2deg);
     -webkit-transform: rotate(2deg);
     -moz-transform: rotate(2deg);
+    transform: rotate(2deg);
     position: relative;
     top: 5px;
 }
@@ -183,6 +186,7 @@
     -o-transform: rotate(-2deg);
     -webkit-transform: rotate(-2deg);
     -moz-transform: rotate(-2deg);
+    transform: rotate(-2deg);
     position: relative;
     top: -5px;
 }
@@ -191,6 +195,7 @@
     -o-transform: rotate(2deg);
     -webkit-transform: rotate(2deg);
     -moz-transform: rotate(2deg);
+    transform: rotate(2deg);
     position: relative;
     top: -10px;
 }
@@ -203,6 +208,7 @@
     -webkit-transform: scale(1.05);
     -moz-transform: scale(1.1);
     -o-transform: scale(1.05);
+    transform: scale(1.05);
     position: relative;
     z-index: 5;
 }
