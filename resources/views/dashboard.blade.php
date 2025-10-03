@@ -331,18 +331,21 @@
                             </div>
                         </div>
                     </div>
-                    <div class="dashboard-card-footer">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <small class="text-muted">Last updated: <span id="lastUpdated">--</span></small>
-                            <div class="d-flex gap-2">
-                                <a href="{{ route('attendance.breaks') }}" class="btn btn-outline-warning btn-sm">
-                                    <i class="bx bx-coffee me-1"></i>Break Management
-                                </a>
-                                <a href="{{ route('attendance.tracker') }}" class="btn btn-outline-primary btn-sm">
-                                    <i class="bx bx-time-five me-1"></i>Full Tracker
-                                </a>
-                            </div>
-                        </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Attendance Action Buttons -->
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="attendance-action-buttons">
+                    <div class="d-flex flex-wrap gap-2 justify-content-center">
+                        <a href="{{ route('attendance.breaks') }}" class="btn btn-outline-warning">
+                            <i class="bx bx-coffee me-1"></i>Break Management
+                        </a>
+                        <a href="{{ route('attendance.tracker') }}" class="btn btn-outline-primary">
+                            <i class="bx bx-time-five me-1"></i>Full Tracker
+                        </a>
                     </div>
                 </div>
             </div>
@@ -845,31 +848,6 @@
 
                     </div>
 
-                    <div class="dashboard-card-footer">
-
-                        <div class="d-flex justify-content-between align-items-center">
-
-                            <small class="text-muted">Last updated: <span id="lastUpdated">--</span></small>
-
-                            <div class="d-flex gap-2">
-
-                                <a href="{{ route('attendance.breaks') }}" class="btn btn-outline-warning btn-sm">
-
-                                    <i class="bx bx-coffee me-1"></i>Break Management
-
-                                </a>
-
-                                <a href="{{ route('attendance.tracker') }}" class="btn btn-outline-primary btn-sm">
-
-                                    <i class="bx bx-time-five me-1"></i>Full Tracker
-
-                                </a>
-
-                            </div>
-
-                        </div>
-
-                    </div>
 
                 </div>
 
