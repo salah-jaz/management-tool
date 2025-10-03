@@ -2450,11 +2450,709 @@ html:not([dir="rtl"]) .timeline-item {
     object-fit: cover;
 }
 
-/* Responsive Adjustments */
+/* Dashboard Mobile Responsive Fixes */
+
+/* Global dashboard improvements */
+.dashboard-container {
+    padding-bottom: 2rem;
+}
+
+/* Super Mobile-Friendly Dashboard */
+/* Add smooth scrolling for mobile */
+html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Optimize for mobile performance */
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
 @media (max-width: 576px) {
-    #jazingEcosystemDrawer {
-        --bs-offcanvas-width: 100vw;
+    /* Container and spacing improvements */
+    .container-fluid {
+        padding-left: 8px;
+        padding-right: 8px;
     }
+    
+    /* Dashboard header mobile optimization */
+    .dashboard-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+        padding: 0.75rem;
+        background: #f8f9fa;
+        border-radius: 8px;
+    }
+    
+    /* Search bar mobile optimization */
+    .search-bar {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    /* User info mobile layout */
+    .user-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    /* Dashboard cards super mobile optimization */
+    .row.mt-4 {
+        margin-left: -4px;
+        margin-right: -4px;
+        margin-top: 1rem;
+    }
+    
+    .row.mt-4 > [class*="col-"] {
+        padding-left: 4px;
+        padding-right: 4px;
+        margin-bottom: 8px;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    /* Dashboard tile cards mobile optimization */
+    .dashboard-tile {
+        min-height: 90px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        margin-bottom: 8px;
+    }
+    
+    .dashboard-tile .card-body {
+        padding: 0.75rem;
+        min-height: 70px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    /* Mobile tile content layout */
+    .dashboard-tile .card-body > div:first-child {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    .dashboard-tile h6 {
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+        line-height: 1.2;
+    }
+    
+    .dashboard-tile h3 {
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin: 0.25rem 0;
+        line-height: 1.1;
+    }
+    
+    .dashboard-tile small {
+        font-size: 0.7rem;
+        line-height: 1.2;
+    }
+    
+    /* Mobile avatar optimization */
+    .dashboard-tile .avatar {
+        align-self: flex-end;
+        margin-top: -0.25rem;
+    }
+    
+    .dashboard-tile .avatar-initial {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+    }
+    
+    /* Attendance section mobile optimization */
+    .dashboard-card-modern {
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        margin-bottom: 1rem;
+    }
+    
+    .dashboard-card-header {
+        padding: 1rem;
+        border-radius: 12px 12px 0 0;
+    }
+    
+    .dashboard-card-header .card-icon-wrapper {
+        width: 36px;
+        height: 36px;
+        font-size: 1.1rem;
+    }
+    
+    .dashboard-card-header h5 {
+        font-size: 1rem;
+        margin-bottom: 0.25rem;
+    }
+    
+    .dashboard-card-header p {
+        font-size: 0.8rem;
+    }
+    
+    /* Attendance body mobile layout */
+    .dashboard-card-body {
+        padding: 1rem;
+    }
+    
+    .dashboard-card-body .row {
+        margin: 0;
+    }
+    
+    .dashboard-card-body .col-md-8,
+    .dashboard-card-body .col-md-4 {
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding: 0;
+    }
+    
+    /* Status indicator mobile optimization */
+    .status-indicator {
+        margin-bottom: 0.75rem;
+    }
+    
+    .status-circle {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+    
+    .status-circle i {
+        font-size: 1rem;
+    }
+    
+    /* Time display mobile optimization */
+    .time-display {
+        padding: 0.5rem;
+        margin-bottom: 0.5rem;
+        border-radius: 8px;
+        background: #f8f9fa;
+    }
+    
+    .time-display .time-icon {
+        width: 24px;
+        height: 24px;
+        font-size: 0.8rem;
+    }
+    
+    .time-display span {
+        font-size: 0.9rem;
+        font-weight: 600;
+    }
+    
+    /* Attendance actions mobile optimization */
+    .attendance-actions {
+        margin-top: 1rem;
+    }
+    
+    .attendance-actions .btn {
+        font-size: 0.8rem;
+        padding: 0.6rem 1rem;
+        margin-bottom: 0.5rem;
+        border-radius: 8px;
+        font-weight: 600;
+        min-height: 44px; /* Touch target size */
+    }
+    
+    /* Attendance action buttons mobile optimization */
+    .attendance-action-buttons {
+        padding: 0.75rem;
+        margin-top: 0.75rem;
+        border-radius: 12px;
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+    }
+    
+    .attendance-action-buttons .d-flex {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .attendance-action-buttons .btn {
+        width: 100%;
+        font-size: 0.8rem;
+        padding: 0.6rem 1rem;
+        border-radius: 8px;
+        font-weight: 600;
+        min-height: 44px; /* Touch target size */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .attendance-action-buttons .btn i {
+        margin-right: 0.5rem;
+        font-size: 0.9rem;
+    }
+    
+    /* Statistics section mobile optimization */
+    .dashboard-statistics {
+        margin-bottom: 1.5rem;
+    }
+    
+    .dashboard-statistics .card {
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+    
+    /* Tabs section mobile optimization */
+    .dashboard-tabs .nav-tabs {
+        flex-wrap: wrap;
+        border-bottom: 1px solid #dee2e6;
+    }
+    
+    .dashboard-tabs .nav-tabs .nav-link {
+        font-size: 0.8rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 8px 8px 0 0;
+        margin-bottom: 0.25rem;
+    }
+    
+    .dashboard-tabs .tab-content {
+        padding: 1rem;
+    }
+    
+    /* Table mobile optimization */
+    .table-responsive {
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    
+    .table {
+        font-size: 0.8rem;
+    }
+    
+    .table th,
+    .table td {
+        padding: 0.5rem 0.25rem;
+        vertical-align: middle;
+    }
+    
+    /* Button mobile optimization */
+    .btn {
+        min-height: 44px; /* Touch target size */
+        font-size: 0.8rem;
+        padding: 0.6rem 1rem;
+        border-radius: 8px;
+        font-weight: 600;
+    }
+    
+    .btn-sm {
+        min-height: 36px;
+        font-size: 0.75rem;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    /* Form elements mobile optimization */
+    .form-control,
+    .form-select {
+        min-height: 44px;
+        font-size: 0.9rem;
+        border-radius: 8px;
+    }
+    
+    /* Modal mobile optimization */
+    .modal-dialog {
+        margin: 0.5rem;
+        max-width: calc(100% - 1rem);
+    }
+    
+    .modal-content {
+        border-radius: 12px;
+    }
+    
+    .modal-header {
+        padding: 1rem;
+        border-bottom: 1px solid #dee2e6;
+    }
+    
+    .modal-body {
+        padding: 1rem;
+    }
+    
+    .modal-footer {
+        padding: 1rem;
+        border-top: 1px solid #dee2e6;
+    }
+    
+    /* Floating action buttons mobile optimization */
+    .jazing-fab {
+        right: 12px;
+        bottom: 12px;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .jazing-fab i {
+        font-size: 1.1rem;
+    }
+    
+    /* Chat and timer images mobile optimization */
+    .chat-img,
+    .timer-img {
+        width: 40px;
+        height: 40px;
+        bottom: 12px;
+        right: 12px;
+    }
+    
+    /* Ensure proper spacing between all sections */
+    .row {
+        margin-bottom: 0.75rem;
+    }
+    
+    .card {
+        margin-bottom: 0.75rem;
+    }
+    
+    /* Fix any text overflow issues */
+    .text-truncate {
+        max-width: 100%;
+    }
+    
+    /* Improve readability */
+    body {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        line-height: 1.2;
+    }
+    
+    /* Enhanced touch interactions */
+    .dashboard-tile {
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    
+    .dashboard-tile:active {
+        transform: scale(0.98);
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Improve link touch targets */
+    .dashboard-tile a {
+        display: inline-block;
+        padding: 0.25rem 0;
+        min-height: 32px;
+        line-height: 1.2;
+    }
+    
+    /* Better spacing for mobile */
+    .dashboard-tile .card-body {
+        position: relative;
+    }
+    
+    /* Mobile-specific hover effects */
+    @media (hover: hover) {
+        .dashboard-tile:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+    }
+    
+    /* Touch device optimizations */
+    @media (hover: none) {
+        .dashboard-tile:active {
+            transform: scale(0.95);
+            transition: transform 0.1s ease;
+        }
+    }
+}
+
+.dashboard-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.dashboard-header .d-flex {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+/* Break management section styling */
+.break-management {
+    background: rgba(255, 193, 7, 0.1);
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    border-radius: 8px;
+    padding: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.break-management .d-flex {
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Dashboard footer improvements */
+.dashboard-card-footer {
+    background: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+    padding: 1rem 1.5rem;
+}
+
+.dashboard-card-footer .d-flex {
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dashboard-card-footer .btn {
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.dashboard-card-footer .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Attendance Action Buttons Styling */
+.attendance-action-buttons {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.attendance-action-buttons .btn {
+    min-width: 150px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.attendance-action-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Mobile-specific button improvements */
+@media (max-width: 768px) {
+    .dashboard-card-footer .btn {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        text-align: left;
+        width: 100%;
+        margin-bottom: 0.25rem;
+    }
+    
+    .dashboard-card-footer .btn i {
+        margin-right: 0.5rem;
+        flex-shrink: 0;
+    }
+    
+    /* Mobile styling for attendance action buttons */
+    .attendance-action-buttons {
+        padding: 0.75rem;
+        margin-top: 0.75rem;
+    }
+    
+    .attendance-action-buttons .btn {
+        min-width: 120px;
+        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
+    }
+}
+
+/* Medium Mobile Screens (577px - 768px) */
+@media (max-width: 768px) and (min-width: 577px) {
+    /* Dashboard cards 2x2 layout */
+    .row.mt-4 > [class*="col-"] {
+        flex: 0 0 50%;
+        max-width: 50%;
+        margin-bottom: 12px;
+    }
+    
+    .dashboard-tile {
+        min-height: 100px;
+    }
+    
+    .dashboard-tile .card-body {
+        padding: 0.875rem;
+        min-height: 80px;
+    }
+    
+    .dashboard-tile h6 {
+        font-size: 0.85rem;
+    }
+    
+    .dashboard-tile h3 {
+        font-size: 1.5rem;
+    }
+    
+    .dashboard-tile .avatar-initial {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Fix dashboard container spacing */
+    .container-fluid {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    /* Fix dashboard tiles spacing */
+    .row.mt-4 {
+        margin-left: -8px;
+        margin-right: -8px;
+    }
+    
+    .row.mt-4 > [class*="col-"] {
+        padding-left: 8px;
+        padding-right: 8px;
+        margin-bottom: 16px;
+    }
+    
+    /* Fix dashboard cards */
+    .card {
+        margin-bottom: 16px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .card-body {
+        padding: 1rem;
+    }
+    
+    /* Fix dashboard tile layout */
+    .card-body.d-flex {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+    
+    .card-body .avatar {
+        align-self: flex-end;
+        margin-top: -0.5rem;
+    }
+    
+    /* Fix text sizing */
+    .card-body h6 {
+        font-size: 0.875rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .card-body h3 {
+        font-size: 1.5rem;
+        margin: 0.5rem 0;
+    }
+    
+    .card-body small {
+        font-size: 0.75rem;
+    }
+    
+    /* Fix avatar sizing */
+    .avatar-initial {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+    
+    /* Dashboard tile specific fixes */
+    .dashboard-tile {
+        min-height: 120px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+    .dashboard-tile:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .dashboard-tile .card-body {
+        min-height: 100px;
+    }
+    
+    /* Fix dashboard footer for medium screens */
+    .dashboard-card-footer .d-flex {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .dashboard-card-footer .d-flex .d-flex {
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+        align-items: flex-start;
+    }
+    
+    .dashboard-card-footer .btn {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+        width: 100%;
+        text-align: left;
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 576px) {
+    /* Extra small mobile fixes */
+    .container-fluid {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    /* Single column layout for very small screens */
+    .row.mt-4 > [class*="col-"] {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-bottom: 12px;
+    }
+    
+    /* Reduce card padding further */
+    .card-body {
+        padding: 0.875rem;
+    }
+    
+    /* Fix dashboard header overlapping */
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .dashboard-header .d-flex {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    /* Fix break management section */
+    .break-management {
+        margin-top: 0.5rem;
+        padding: 0.5rem;
+        border-radius: 8px;
+        background: rgba(255, 193, 7, 0.1);
+    }
+    
+    /* Ensure proper spacing between sections */
+    .row {
+        margin-bottom: 1rem;
+    }
+    
+    /* Fix statistics card cutoff */
+    .dashboard-statistics {
+        margin-bottom: 2rem;
+    }
+    
+    /* Fix floating action buttons */
     .jazing-fab {
         right: 15px;
         width: 48px;
@@ -2462,6 +3160,88 @@ html:not([dir="rtl"]) .timeline-item {
     }
     .jazing-fab i {
         font-size: 1.2rem;
+    }
+    
+    /* Fix drawer width */
+    #jazingEcosystemDrawer {
+        --bs-offcanvas-width: 100vw;
+    }
+    
+    /* Dashboard tile mobile optimizations */
+    .dashboard-tile {
+        min-height: 100px;
+    }
+    
+    .dashboard-tile .card-body {
+        min-height: 80px;
+        padding: 0.75rem;
+    }
+    
+    .dashboard-tile h3 {
+        font-size: 1.25rem;
+    }
+    
+    .dashboard-tile .avatar-initial {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+    
+    /* Fix any overlapping elements */
+    .d-flex.align-items-center {
+        flex-wrap: wrap;
+    }
+    
+    /* Ensure proper spacing for all dashboard sections */
+    .dashboard-section {
+        margin-bottom: 1.5rem;
+    }
+    
+    /* Mobile styling for attendance action buttons on small screens */
+    .attendance-action-buttons {
+        padding: 0.5rem;
+        margin-top: 0.5rem;
+    }
+    
+    .attendance-action-buttons .btn {
+        min-width: 100px;
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+        flex: 1;
+        margin-bottom: 0.5rem;
+    }
+    
+    .attendance-action-buttons .d-flex {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    /* Fix dashboard footer layout on mobile */
+    .dashboard-card-footer .d-flex {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+    
+    .dashboard-card-footer .d-flex .d-flex {
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+        align-items: flex-start;
+    }
+    
+    .dashboard-card-footer .btn {
+        font-size: 0.75rem;
+        padding: 0.375rem 0.75rem;
+        white-space: nowrap;
+        width: 100%;
+        text-align: left;
+        justify-content: flex-start;
+    }
+    
+    .dashboard-card-footer small {
+        font-size: 0.7rem;
+        margin-bottom: 0.5rem;
     }
 }
 
