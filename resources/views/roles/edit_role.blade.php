@@ -42,7 +42,13 @@ use Spatie\Permission\Models\Permission; ?>
                     <div class="mb-3">
                         <label class="form-label" for=""><?= get_label('data_access', 'Data Access') ?> <i class='bx bx-info-circle text-primary' data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" title="" data-bs-original-title="{{get_label('all_data_access_info', 'If All Data Access Is Selected, Users Under This Roles Will Have Unrestricted Access to All Data, Irrespective of Any Specific Assignments or Restrictions')}}"></i></label>
                         <div class="btn-group btn-group d-flex justify-content-center" role="group" aria-label="Basic radio toggle button group">
-                            <input type="radio" class="btn-check" name="permissions[]" id="access_all_data" value="<?= $guard == 'client' ? Permission::where('name', 'access_all_data')->where('guard_name', 'client')->first()->id : Permission::where('name', 'access_all_data')->where('guard_name', 'web')->first()->id ?>" {{$role_permissions->contains('name', 'access_all_data') ? 'checked' : ''}}>
+                            <?php
+                            $accessAllPermission = Permission::where('name', 'access_all_data')
+                                ->where('guard_name', $guard == 'client' ? 'client' : 'web')
+                                ->first();
+                            $accessAllPermissionId = $accessAllPermission ? $accessAllPermission->id : 0;
+                            ?>
+                            <input type="radio" class="btn-check" name="permissions[]" id="access_all_data" value="<?= $accessAllPermissionId ?>" {{$role_permissions->contains('name', 'access_all_data') ? 'checked' : ''}}>
                             <label class="btn btn-outline-primary" for="access_all_data"><?= get_label('all_data_access', 'All Data Access') ?></label>
                             <input type="radio" class="btn-check" name="permissions[]" id="access_allocated_data" value="0" {{$role_permissions->contains('name', 'access_all_data') ? '' : 'checked'}}>
                             <label class="btn btn-outline-primary" for="access_allocated_data"><?= get_label('allocated_data_access', 'Allocated Data Access') ?></label>
@@ -88,8 +94,11 @@ use Spatie\Permission\Models\Permission; ?>
                                                 @endif
                                             </label>
                                             @else
-                                            <?php $permissionId = Permission::findByName($permission)->id; ?>
-                                            <input type="checkbox" id="permission{{$permissionId}}" name="permissions[]" value="{{$permissionId}}" class="form-check-input permission-checkbox" data-module="{{$module}}" {{$role_permissions->contains('name', $permission) ? 'checked' : ''}}>
+                                            <?php
+                                            $permissionModelWeb = Permission::where('name', $permission)->where('guard_name', 'web')->first();
+                                            $permissionId = $permissionModelWeb ? $permissionModelWeb->id : 0;
+                                            ?>
+                                            <input type="checkbox" id="permission{{$permissionId}}" name="permissions[]" value="{{$permissionId}}" class="form-check-input permission-checkbox" data-module="{{$module}}" {{$role_permissions->contains('name', $permission) ? 'checked' : ''}} {{$permissionId == 0 ? 'disabled' : ''}}>
                                             <label class="form-check-label text-capitalize" for="permission{{$permissionId}}">
                                                 @if($module === 'Media' && $permission === 'create_media')
                                                 {{ get_label ('upload', 'Upload')}}

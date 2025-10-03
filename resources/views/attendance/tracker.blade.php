@@ -30,7 +30,7 @@
                             <div class="col-md-6">
                                 <div class="d-flex align-items-center mb-4">
                                     <div class="me-3">
-                                        <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                                        <div id="statusCircle" class="bg-secondary rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
                                             <i class="bx bx-time text-white" id="statusIcon" style="font-size: 1.5rem;"></i>
                                         </div>
                                     </div>
@@ -226,6 +226,7 @@
                 .then(data => {
                     currentStatus = data.status;
                     updateAttendanceUI(data);
+                    loadWeeklySummary();
                 })
                 .catch(error => console.error('Error loading status:', error));
         }
@@ -274,7 +275,7 @@
             if (data.attendance) {
                 checkInTime.textContent = data.attendance.check_in_time_formatted || '--:--';
                 checkOutTime.textContent = data.attendance.check_out_time_formatted || '--:--';
-                workHours.textContent = data.attendance.total_work_hours_formatted || '00:00';
+                workHours.textContent = data.attendance.computed_work_hours_formatted || data.attendance.total_work_hours_formatted || '00:00';
                 breakTime.textContent = data.attendance.total_break_hours_formatted || '00:00';
             }
 
@@ -290,6 +291,42 @@
             // Update buttons
             updateActionButtons();
             updateBreaksTable(data.attendance);
+        }
+
+        // Load weekly summary
+        function loadWeeklySummary() {
+            fetch('{{ route("attendance.weekly-summary") }}')
+                .then(r => r.json())
+                .then(({ success, summary }) => {
+                    if (!success) return;
+                    const container = document.getElementById('weeklySummary');
+                    container.innerHTML = `
+                        <div class="col-md-3">
+                            <div class="p-3 border rounded text-center">
+                                <div class="text-muted small">Days Present</div>
+                                <div class="h4 mb-0">${summary.days_present}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="p-3 border rounded text-center">
+                                <div class="text-muted small">Total Work</div>
+                                <div class="h4 mb-0">${summary.total_work}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="p-3 border rounded text-center">
+                                <div class="text-muted small">Total Break</div>
+                                <div class="h4 mb-0">${summary.total_break}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="p-3 border rounded text-center">
+                                <div class="text-muted small">Overtime</div>
+                                <div class="h4 mb-0">${summary.overtime_hours}h</div>
+                            </div>
+                        </div>`;
+                })
+                .catch(() => {});
         }
 
         // Update action buttons based on status

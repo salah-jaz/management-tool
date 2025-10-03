@@ -3,7 +3,6 @@
     <?= get_label('dashboard', 'Dashboard') ?>
 @endsection
 @section('content')
-    @authBoth
     <div class="container-fluid">
         <!-- Alert for Reset Warning -->
         @if (config('constants.ALLOW_MODIFICATION') === 0)
@@ -471,18 +470,27 @@
                     method: 'POST',
                     headers: {
                         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'workspace_id': '{{ session('workspace_id') }}'
                     },
                     body: JSON.stringify({})
                 })
-                .then(response => response.json())
-                .then(data => {
+                .then(async response => {
+                    const contentType = response.headers.get('content-type') || '';
+                    const isJson = contentType.includes('application/json');
+                    const data = isJson ? await response.json() : { success: false, message: response.status === 419 ? 'Session expired. Please refresh and try again.' : 'Unexpected response from server.' };
+                    return { ok: response.ok, status: response.status, data };
+                })
+                .then(({ ok, status, data }) => {
                     console.log('Check-in response:', data); // Debug log
                     if (data.success) {
                         loadDashboardAttendanceStatus();
                         showNotification('Checked in successfully!', 'success');
                     } else {
-                        showNotification(data.message, 'error');
+                        const message = data && data.message ? data.message : (status === 422 ? 'Workspace or user not resolved. Reselect a workspace and try again.' : 'Error checking in');
+                        showNotification(message, 'error');
                     }
                 })
                 .catch(error => {
@@ -497,17 +505,26 @@
                         method: 'POST',
                         headers: {
                             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                            'Content-Type': 'application/json'
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json',
+                            'X-Requested-With': 'XMLHttpRequest',
+                            'workspace_id': '{{ session('workspace_id') }}'
                         },
                         body: JSON.stringify({})
                     })
-                    .then(response => response.json())
-                    .then(data => {
+                    .then(async response => {
+                        const contentType = response.headers.get('content-type') || '';
+                        const isJson = contentType.includes('application/json');
+                        const data = isJson ? await response.json() : { success: false, message: response.status === 419 ? 'Session expired. Please refresh and try again.' : 'Unexpected response from server.' };
+                        return { ok: response.ok, status: response.status, data };
+                    })
+                    .then(({ ok, status, data }) => {
                         if (data.success) {
                             loadDashboardAttendanceStatus();
                             showNotification('Checked out successfully!', 'success');
                         } else {
-                            showNotification(data.message, 'error');
+                            const message = data && data.message ? data.message : (status === 422 ? 'Workspace or user not resolved. Reselect a workspace and try again.' : 'Error checking out');
+                            showNotification(message, 'error');
                         }
                     })
                     .catch(error => {
@@ -523,20 +540,29 @@
                     method: 'POST',
                     headers: {
                         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'workspace_id': '{{ session('workspace_id') }}'
                     },
                     body: JSON.stringify({
                         break_type: 'other',
                         break_reason: 'Quick break'
                     })
                 })
-                .then(response => response.json())
-                .then(data => {
+                .then(async response => {
+                    const contentType = response.headers.get('content-type') || '';
+                    const isJson = contentType.includes('application/json');
+                    const data = isJson ? await response.json() : { success: false, message: response.status === 419 ? 'Session expired. Please refresh and try again.' : 'Unexpected response from server.' };
+                    return { ok: response.ok, status: response.status, data };
+                })
+                .then(({ ok, status, data }) => {
                     if (data.success) {
                         loadDashboardAttendanceStatus();
                         showNotification('Break started!', 'success');
                     } else {
-                        showNotification(data.message, 'error');
+                        const message = data && data.message ? data.message : (status === 422 ? 'Workspace or user not resolved. Reselect a workspace and try again.' : 'Error starting break');
+                        showNotification(message, 'error');
                     }
                 })
                 .catch(error => {
@@ -550,17 +576,26 @@
                     method: 'POST',
                     headers: {
                         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'workspace_id': '{{ session('workspace_id') }}'
                     },
                     body: JSON.stringify({})
                 })
-                .then(response => response.json())
-                .then(data => {
+                .then(async response => {
+                    const contentType = response.headers.get('content-type') || '';
+                    const isJson = contentType.includes('application/json');
+                    const data = isJson ? await response.json() : { success: false, message: response.status === 419 ? 'Session expired. Please refresh and try again.' : 'Unexpected response from server.' };
+                    return { ok: response.ok, status: response.status, data };
+                })
+                .then(({ ok, status, data }) => {
                     if (data.success) {
                         loadDashboardAttendanceStatus();
                         showNotification('Break ended!', 'success');
                     } else {
-                        showNotification(data.message, 'error');
+                        const message = data && data.message ? data.message : (status === 422 ? 'Workspace or user not resolved. Reselect a workspace and try again.' : 'Error ending break');
+                        showNotification(message, 'error');
                     }
                 })
                 .catch(error => {
@@ -748,12 +783,613 @@
                 border-top: 1px solid #e9ecef;
                 padding: 1rem 1.5rem;
             }
+
+            /* Mobile responsiveness improvements */
+            @media (max-width: 992px) {
+                .dashboard-card-header {
+                    padding: 1.25rem;
+                }
+                .dashboard-card-body {
+                    padding: 1.25rem;
+                }
+            }
+
+            @media (max-width: 576px) {
+                .attendance-status-widget .status-circle {
+                    width: 40px;
+                    height: 40px;
+                    font-size: 1.1rem;
+                }
+                .attendance-status-widget .d-flex.align-items-center {
+                    flex-wrap: wrap;
+                }
+                .attendance-status-widget .status-indicator {
+                    margin-bottom: .5rem;
+                }
+                .time-display {
+                    padding: .75rem;
+                }
+                .time-display .time-icon {
+                    width: 28px;
+                    height: 28px;
+                    font-size: .9rem;
+                }
+                .time-display span {
+                    font-size: 1rem;
+                }
+                .attendance-actions .btn {
+                    font-size: .875rem;
+                    padding: .5rem .75rem;
+                }
+                .dashboard-card-header .card-icon-wrapper {
+                    width: 38px;
+                    height: 38px;
+                    font-size: 1.2rem;
+                }
+                .dashboard-card-footer {
+                    padding: .75rem 1rem;
+                }
+                /* Ensure horizontal scrolling for any wide tables inside dashboard */
+                .table-responsive {
+                    overflow-x: auto;
+                    -webkit-overflow-scrolling: touch;
+                }
+            }
         </style>
-    @else
-        <div class="w-100 h-100 d-flex align-items-center justify-content-center">
-            <span>You must <a href="{{ url('login') }}">Log in</a> or <a href="{{ url('register') }}">Register</a> to
-                access
-                {{ $general_settings['company_title'] }}!</span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="dashboard-card-footer">
+
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <small class="text-muted">Last updated: <span id="lastUpdated">--</span></small>
+
+                            <div class="d-flex gap-2">
+
+                                <a href="{{ route('attendance.breaks') }}" class="btn btn-outline-warning btn-sm">
+
+                                    <i class="bx bx-coffee me-1"></i>Break Management
+
+                                </a>
+
+                                <a href="{{ route('attendance.tracker') }}" class="btn btn-outline-primary btn-sm">
+
+                                    <i class="bx bx-time-five me-1"></i>Full Tracker
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
-    @endauth
+
+        
+
+        <script src="{{ asset('assets/js/apexcharts.js') }}"></script>
+
+        <script src="{{ asset('assets/js/Sortable.min.js') }}"></script>
+
+        <script src="{{ asset('assets/js/pages/dashboard.js') }}"></script>
+
+        
+
+        <!-- Attendance Dashboard Scripts -->
+
+        <script>
+
+            let dashboardCurrentStatus = 'not_checked_in';
+
+
+
+            // Load current attendance status for dashboard
+
+            function loadDashboardAttendanceStatus() {
+
+                fetch('{{ route("attendance.current-status") }}')
+
+                    .then(response => response.json())
+
+                    .then(data => {
+
+                        dashboardCurrentStatus = data.status;
+
+                        updateDashboardAttendanceUI(data);
+
+                        document.getElementById('lastUpdated').textContent = new Date().toLocaleTimeString();
+
+                    })
+
+                    .catch(error => console.error('Error loading dashboard status:', error));
+
+            }
+
+
+
+            // Update dashboard attendance UI
+
+            function updateDashboardAttendanceUI(data) {
+
+                const statusCircle = document.getElementById('dashboardStatusCircle');
+
+                const statusText = document.getElementById('dashboardStatusText');
+
+                const statusSubtext = document.getElementById('dashboardStatusSubtext');
+
+                const checkInTime = document.getElementById('dashboardCheckInTime');
+
+                const workHours = document.getElementById('dashboardWorkHours');
+
+
+
+                // Update status indicator
+
+                switch(dashboardCurrentStatus) {
+
+                    case 'not_checked_in':
+
+                        statusCircle.className = 'status-circle bg-secondary';
+
+                        statusText.textContent = 'Not Checked In';
+
+                        statusSubtext.textContent = 'Click check-in to start your day';
+
+                        break;
+
+                    case 'checked_in':
+
+                        statusCircle.className = 'status-circle bg-success';
+
+                        statusText.textContent = 'Checked In';
+
+                        statusSubtext.textContent = 'You are currently working';
+
+                        break;
+
+                    case 'on_break':
+
+                        statusCircle.className = 'status-circle bg-warning';
+
+                        statusText.textContent = 'On Break';
+
+                        statusSubtext.textContent = 'You are currently on break';
+
+                        break;
+
+                    case 'checked_out':
+
+                        statusCircle.className = 'status-circle bg-info';
+
+                        statusText.textContent = 'Checked Out';
+
+                        statusSubtext.textContent = 'You have completed your work day';
+
+                        break;
+
+                }
+
+
+
+                // Update times
+
+                if (data.attendance) {
+
+                    checkInTime.textContent = data.attendance.check_in_time_formatted || '--:--';
+
+                    workHours.textContent = data.attendance.total_work_hours_formatted || '00:00';
+
+                }
+
+
+                // Update buttons
+
+                updateDashboardActionButtons();
+
+            }
+
+
+
+            // Update dashboard action buttons
+
+            function updateDashboardActionButtons() {
+
+                const checkInBtn = document.getElementById('dashboardCheckInBtn');
+
+                const checkOutBtn = document.getElementById('dashboardCheckOutBtn');
+
+                const startBreakBtn = document.getElementById('dashboardStartBreakBtn');
+
+                const endBreakBtn = document.getElementById('dashboardEndBreakBtn');
+
+
+
+                // Hide all buttons first
+
+                checkInBtn.style.display = 'none';
+
+                checkOutBtn.style.display = 'none';
+
+                startBreakBtn.style.display = 'none';
+
+                endBreakBtn.style.display = 'none';
+
+
+
+                switch(dashboardCurrentStatus) {
+
+                    case 'not_checked_in':
+
+                        checkInBtn.style.display = 'block';
+
+                        break;
+
+                    case 'checked_in':
+
+                        checkOutBtn.style.display = 'block';
+
+                        startBreakBtn.style.display = 'block';
+
+                        break;
+
+                    case 'on_break':
+
+                        endBreakBtn.style.display = 'block';
+
+                        break;
+
+                    case 'checked_out':
+
+                        // No buttons for checked out status
+
+                        break;
+
+                }
+
+            }
+
+
+
+            // Dashboard attendance functions
+
+            function dashboardCheckIn() {
+
+                fetch('{{ route("attendance.check-in") }}', {
+
+                    method: 'POST',
+
+                    headers: {
+
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+
+                        'Content-Type': 'application/json'
+
+                    },
+
+                    body: JSON.stringify({})
+
+                })
+
+                .then(response => response.json())
+
+                .then(data => {
+
+                    if (data.success) {
+
+                        loadDashboardAttendanceStatus();
+
+                        showNotification('Checked in successfully!', 'success');
+
+                    } else {
+
+                        showNotification(data.message, 'error');
+
+                    }
+
+                })
+
+                .catch(error => {
+
+                    console.error('Error:', error);
+
+                    showNotification('Error checking in', 'error');
+
+                });
+
+            }
+
+
+
+            function dashboardCheckOut() {
+
+                if (confirm('Are you sure you want to check out?')) {
+
+                    fetch('{{ route("attendance.check-out") }}', {
+
+                        method: 'POST',
+
+                        headers: {
+
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+
+                            'Content-Type': 'application/json'
+
+                        },
+
+                        body: JSON.stringify({})
+
+                    })
+
+                    .then(response => response.json())
+
+                    .then(data => {
+
+                        if (data.success) {
+
+                            loadDashboardAttendanceStatus();
+
+                            showNotification('Checked out successfully!', 'success');
+
+                        } else {
+
+                            showNotification(data.message, 'error');
+
+                        }
+
+                    })
+
+                    .catch(error => {
+
+                        console.error('Error:', error);
+
+                        showNotification('Error checking out', 'error');
+
+                    });
+
+                }
+
+            }
+
+
+
+            function dashboardStartBreak() {
+
+                // Simple break start without modal for dashboard
+
+                fetch('{{ route("attendance.start-break") }}', {
+
+                    method: 'POST',
+
+                    headers: {
+
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+
+                        'Content-Type': 'application/json'
+
+                    },
+
+                    body: JSON.stringify({
+
+                        break_type: 'other',
+
+                        break_reason: 'Quick break'
+
+                    })
+
+                })
+
+                .then(response => response.json())
+
+                .then(data => {
+
+                    if (data.success) {
+
+                        loadDashboardAttendanceStatus();
+
+                        showNotification('Break started!', 'success');
+
+                    } else {
+
+                        showNotification(data.message, 'error');
+
+                    }
+
+                })
+
+                .catch(error => {
+
+                    console.error('Error:', error);
+
+                    showNotification('Error starting break', 'error');
+
+                });
+
+            }
+
+
+
+            function dashboardEndBreak() {
+
+                fetch('{{ route("attendance.end-break") }}', {
+
+                    method: 'POST',
+
+                    headers: {
+
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+
+                        'Content-Type': 'application/json'
+
+                    },
+
+                    body: JSON.stringify({})
+
+                })
+
+                .then(response => response.json())
+
+                .then(data => {
+
+                    if (data.success) {
+
+                        loadDashboardAttendanceStatus();
+
+                        showNotification('Break ended!', 'success');
+
+                    } else {
+
+                        showNotification(data.message, 'error');
+
+                    }
+
+                })
+
+                .catch(error => {
+
+                    console.error('Error:', error);
+
+                    showNotification('Error ending break', 'error');
+
+                });
+
+            }
+
+
+
+            // Show notification function
+
+            function showNotification(message, type) {
+
+                // Simple notification - you can enhance this with toastr or other notification library
+
+                const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
+
+                const alertHtml = `
+
+                    <div class="alert ${alertClass} alert-dismissible fade show position-fixed" style="top: 20px; right: 20px; z-index: 9999;">
+
+                        ${message}
+
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+
+                    </div>
+
+                `;
+
+                document.body.insertAdjacentHTML('beforeend', alertHtml);
+
+                
+
+                // Auto remove after 3 seconds
+
+                setTimeout(() => {
+
+                    const alert = document.querySelector('.alert');
+
+                    if (alert) {
+
+                        alert.remove();
+
+                    }
+
+                }, 3000);
+
+            }
+
+
+
+            // Initialize dashboard attendance
+
+            document.addEventListener('DOMContentLoaded', function() {
+
+                loadDashboardAttendanceStatus();
+
+                setInterval(loadDashboardAttendanceStatus, 30000); // Refresh every 30 seconds
+
+            });
+
+        </script>
+
+        
+
+        <style>
+
+            .attendance-status-widget .status-circle {
+
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+
+                display: flex;
+
+                align-items: center;
+
+                justify-content: center;
+
+                font-size: 1.2rem;
+                color: white;
+
+            }
+
+
+
+            .time-display {
+
+                text-align: center;
+                padding: 0.5rem;
+                background: #f8f9fa;
+
+                border-radius: 6px;
+            }
+
+
+
+            .time-display label {
+
+                display: block;
+
+                font-size: 0.75rem;
+                color: #6c757d;
+
+                margin-bottom: 0.25rem;
+
+            }
+
+
+
+            .time-display span {
+
+                font-size: 1rem;
+                font-weight: bold;
+
+                color: #495057;
+
+            }
+
+
+
+            .attendance-actions .btn {
+
+                font-size: 0.875rem;
+                padding: 0.5rem 0.75rem;
+            }
+
+        </style>
+
+
 @endsection
+
+
+

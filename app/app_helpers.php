@@ -2332,13 +2332,24 @@ if (!function_exists('getWorkspaceId')) {
         $authenticatedUser = getAuthenticatedUser();
         if ($authenticatedUser) {
             if (session()->has('workspace_id')) {
-                // dd(getAuthenticatedUser());
-                $workspaceId = session('workspace_id'); // Retrieve workspace_id from session
+                $workspaceId = session('workspace_id');
             } else {
                 $workspaceId = request()->header('workspace_id');
             }
+
+            // Fallbacks: use user's default workspace, then first accessible workspace
+            if (empty($workspaceId) || (is_numeric($workspaceId) && (int)$workspaceId === 0)) {
+                if (!empty($authenticatedUser->default_workspace_id)) {
+                    $workspaceId = $authenticatedUser->default_workspace_id;
+                } else {
+                    $firstWorkspace = $authenticatedUser->workspaces()->first();
+                    if ($firstWorkspace) {
+                        $workspaceId = $firstWorkspace->id;
+                    }
+                }
+            }
         }
-        return $workspaceId;
+        return $workspaceId ?: 0;
     }
 }
 if (!function_exists('getGuardName')) {

@@ -186,7 +186,7 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <span class="fw-medium">{{ $attendance->total_work_hours_formatted }}</span>
+                                                <span class="fw-medium">{{ $attendance->computed_work_hours_formatted }}</span>
                                                 @if($attendance->overtime_hours > 0)
                                                     <small class="text-success">(+{{ $attendance->overtime_hours }}h)</small>
                                                 @endif

@@ -260,14 +260,26 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function can($ability, $arguments = [])
     {
-        $isAdmin = $this->hasRole('admin'); // Check if the user has the 'admin' role
-
-        // Check if the user is an admin or has the specific permission
-        if ($isAdmin || $this->hasPermissionTo($ability)) {
+        $isAdmin = $this->hasRole('admin');
+        if ($isAdmin) {
             return true;
         }
 
-        // For other cases, use the original can() method
+        // Avoid throwing PermissionDoesNotExist if the permission record is missing
+        try {
+            // If the permission doesn't exist for this guard, treat as not permitted
+            $guard = $this->getDefaultGuardName();
+            if (!\Spatie\Permission\Models\Permission::where('name', $ability)->where('guard_name', $guard)->exists()) {
+                return false;
+            }
+
+            if ($this->hasPermissionTo($ability)) {
+                return true;
+            }
+        } catch (\Spatie\Permission\Exceptions\PermissionDoesNotExist $e) {
+            return false;
+        }
+
         return parent::can($ability, $arguments);
     }
 

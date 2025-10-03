@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class Attendance extends Model
 {
@@ -42,11 +43,11 @@ class Attendance extends Model
 
     protected $casts = [
         'attendance_date' => 'date',
-        'check_in_time' => 'datetime:H:i:s',
-        'check_out_time' => 'datetime:H:i:s',
-        'total_work_hours' => 'datetime:H:i:s',
-        'total_break_hours' => 'datetime:H:i:s',
-        'net_work_hours' => 'datetime:H:i:s',
+        'check_in_time' => 'string',
+        'check_out_time' => 'string',
+        'total_work_hours' => 'string',
+        'total_break_hours' => 'string',
+        'net_work_hours' => 'string',
         'overtime_hours' => 'decimal:2',
         'late_minutes' => 'decimal:2',
         'early_departure_minutes' => 'decimal:2',
@@ -118,8 +119,106 @@ class Attendance extends Model
     // Accessors & Mutators
     public function getTotalWorkHoursFormattedAttribute()
     {
-        return $this->total_work_hours ? Carbon::parse($this->total_work_hours)->format('H:i') : '00:00';
+		// Prefer stored total if present and non-zero, otherwise compute from check-in/out minus completed breaks
+		if ($this->total_work_hours) {
+			$stored = $this->total_work_hours instanceof Carbon
+				? $this->total_work_hours->copy()
+				: Carbon::parse($this->total_work_hours);
+			$storedMinutes = ((int) $stored->format('H')) * 60 + (int) $stored->format('i');
+			if ($storedMinutes > 0) {
+				return $stored->format('H:i');
+			}
+		}
+
+		if (!$this->check_in_time || !$this->check_out_time) {
+			return '00:00';
+		}
+
+		$attendanceDate = $this->attendance_date instanceof Carbon
+			? $this->attendance_date->format('Y-m-d')
+			: (string) $this->attendance_date;
+
+		$inTime = $this->check_in_time instanceof Carbon
+			? $this->check_in_time->format('H:i:s')
+			: (string) $this->check_in_time;
+
+		$outTime = $this->check_out_time instanceof Carbon
+			? $this->check_out_time->format('H:i:s')
+			: (string) $this->check_out_time;
+
+		$in = Carbon::createFromFormat('Y-m-d H:i:s', $attendanceDate.' '.$inTime);
+		$out = Carbon::createFromFormat('Y-m-d H:i:s', $attendanceDate.' '.$outTime);
+		if ($out->lt($in)) {
+			$out->addDay(); // handle overnight shifts
+		}
+
+		$totalMinutes = max(0, $in->diffInMinutes($out));
+
+		// Sum break durations (supports TIME columns)
+		if ($this->relationLoaded('breaks')) {
+			$breakSeconds = $this->breaks
+				->where('break_status', 'completed')
+				->sum(function ($break) {
+					$duration = (string) ($break->break_duration ?? '00:00:00');
+					return max(0, strtotime($duration) - strtotime('00:00:00'));
+				});
+		} else {
+			$breakSeconds = (int) $this->breaks()
+				->where('break_status', 'completed')
+				->sum(DB::raw('TIME_TO_SEC(break_duration)'));
+		}
+		$breakMinutes = (int) round($breakSeconds / 60);
+		$netMinutes = max(0, $totalMinutes - $breakMinutes);
+
+		$hours = intdiv($netMinutes, 60);
+		$minutes = $netMinutes % 60;
+		return sprintf('%02d:%02d', $hours, $minutes);
     }
+
+	public function getComputedWorkHoursFormattedAttribute()
+	{
+		if (!$this->check_in_time || !$this->check_out_time) {
+			return '00:00';
+		}
+
+		$attendanceDate = $this->attendance_date instanceof Carbon
+			? $this->attendance_date->format('Y-m-d')
+			: (string) $this->attendance_date;
+
+		$inStr = $this->check_in_time instanceof Carbon
+			? $this->check_in_time->format('H:i:s')
+			: (string) $this->check_in_time;
+
+		$outStr = $this->check_out_time instanceof Carbon
+			? $this->check_out_time->format('H:i:s')
+			: (string) $this->check_out_time;
+
+		$in = Carbon::createFromFormat('Y-m-d H:i:s', $attendanceDate.' '.$inStr);
+		$out = Carbon::createFromFormat('Y-m-d H:i:s', $attendanceDate.' '.$outStr);
+		if ($out->lt($in)) {
+			$out->addDay();
+		}
+
+		$totalMinutes = max(0, $in->diffInMinutes($out));
+
+		if ($this->relationLoaded('breaks')) {
+			$breakSeconds = $this->breaks
+				->where('break_status', 'completed')
+				->sum(function ($break) {
+					$duration = (string) ($break->break_duration ?? '00:00:00');
+					return max(0, strtotime($duration) - strtotime('00:00:00'));
+				});
+		} else {
+			$breakSeconds = (int) $this->breaks()
+				->where('break_status', 'completed')
+				->sum(DB::raw('TIME_TO_SEC(break_duration)'));
+		}
+
+		$netMinutes = max(0, $totalMinutes - (int) round($breakSeconds / 60));
+		$hours = intdiv($netMinutes, 60);
+		$minutes = $netMinutes % 60;
+		return sprintf('%02d:%02d', $hours, $minutes);
+	}
 
     public function getTotalBreakHoursFormattedAttribute()
     {
@@ -133,12 +232,52 @@ class Attendance extends Model
 
     public function getCheckInTimeFormattedAttribute()
     {
-        return $this->check_in_time ? Carbon::parse($this->check_in_time)->format('H:i') : null;
+		if (!$this->check_in_time) {
+			return null;
+		}
+
+		$targetTimezone = config('app.timezone');
+		$timeValue = $this->check_in_time;
+
+		if ($timeValue instanceof Carbon) {
+			$dt = $timeValue->copy()->timezone('UTC')->setTimezone($targetTimezone);
+		} else {
+			$timeString = (string) $timeValue;
+			if (strpos($timeString, ' ') !== false) {
+				$dt = Carbon::createFromFormat('Y-m-d H:i:s', $timeString, 'UTC')->setTimezone($targetTimezone);
+			} elseif (preg_match('/^\d{2}:\d{2}:\d{2}$/', $timeString)) {
+				$dt = Carbon::createFromFormat('H:i:s', $timeString, 'UTC')->setTimezone($targetTimezone);
+			} else {
+				$dt = Carbon::parse($timeString, 'UTC')->setTimezone($targetTimezone);
+			}
+		}
+
+		return $dt->format('H:i');
     }
 
     public function getCheckOutTimeFormattedAttribute()
     {
-        return $this->check_out_time ? Carbon::parse($this->check_out_time)->format('H:i') : null;
+		if (!$this->check_out_time) {
+			return null;
+		}
+
+		$targetTimezone = config('app.timezone');
+		$timeValue = $this->check_out_time;
+
+		if ($timeValue instanceof Carbon) {
+			$dt = $timeValue->copy()->timezone('UTC')->setTimezone($targetTimezone);
+		} else {
+			$timeString = (string) $timeValue;
+			if (strpos($timeString, ' ') !== false) {
+				$dt = Carbon::createFromFormat('Y-m-d H:i:s', $timeString, 'UTC')->setTimezone($targetTimezone);
+			} elseif (preg_match('/^\d{2}:\d{2}:\d{2}$/', $timeString)) {
+				$dt = Carbon::createFromFormat('H:i:s', $timeString, 'UTC')->setTimezone($targetTimezone);
+			} else {
+				$dt = Carbon::parse($timeString, 'UTC')->setTimezone($targetTimezone);
+			}
+		}
+
+		return $dt->format('H:i');
     }
 
     public function getStatusBadgeAttribute()
