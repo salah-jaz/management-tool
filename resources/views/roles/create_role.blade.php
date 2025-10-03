@@ -42,7 +42,8 @@ use Spatie\Permission\Models\Permission;
                     <div class="mb-3">
                         <label class="form-label" for=""><?= get_label('data_access', 'Data Access') ?> <i class='bx bx-info-circle text-primary' data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" title="" data-bs-original-title="{{get_label('all_data_access_info', 'If All Data Access Is Selected, Users Under This Roles Will Have Unrestricted Access to All Data, Irrespective of Any Specific Assignments or Restrictions')}}"></i></label>
                         <div class="btn-group btn-group d-flex justify-content-center" role="group" aria-label="Basic radio toggle button group">
-                            <input type="radio" class="btn-check" name="permissions[]" id="access_all_data" value="<?= Permission::where('name', 'access_all_data')->where('guard_name', 'web')->first()->id ?>">
+                            <?php $accessAll = Permission::where('name', 'access_all_data')->where('guard_name', 'web')->first(); $accessAllId = $accessAll ? $accessAll->id : 0; ?>
+                            <input type="radio" class="btn-check" name="permissions[]" id="access_all_data" value="<?= $accessAllId ?>" <?= $accessAllId ? '' : 'disabled' ?> >
                             <label class="btn btn-outline-primary" for="access_all_data"><?= get_label('all_data_access', 'All Data Access') ?></label>
                             <input type="radio" class="btn-check" name="permissions[]" id="access_allocated_data" value="0" checked>
                             <label class="btn btn-outline-primary" for="access_allocated_data"><?= get_label('allocated_data_access', 'Allocated Data Access') ?></label>
@@ -77,8 +78,8 @@ use Spatie\Permission\Models\Permission;
                                     <div class="d-flex flex-wrap justify-content-between">
                                         @foreach($permissions as $permission)
                                         <div class="form-check mx-4">
-                                            <?php $permissionId = Permission::findByName($permission)->id; ?>
-                                            <input type="checkbox" id="permission{{$permissionId}}" name="permissions[]" value="{{$permissionId}}" class="form-check-input permission-checkbox" data-module="{{$module}}">
+                                            <?php $permModel = Permission::where('name', $permission)->where('guard_name', 'web')->first(); $permissionId = $permModel ? $permModel->id : 0; ?>
+                                            <input type="checkbox" id="permission{{$permissionId}}" name="permissions[]" value="{{$permissionId}}" class="form-check-input permission-checkbox" data-module="{{$module}}" {{$permissionId == 0 ? 'disabled' : ''}}>
                                             <label class="form-check-label text-capitalize" for="permission{{$permissionId}}">{{ get_label(substr($permission, 0, strpos($permission, "_")), ucfirst(str_replace('_', ' ', substr($permission, 0, strpos($permission, "_"))))) }}</label>
                                         </div>
                                         @endforeach

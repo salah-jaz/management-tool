@@ -31,6 +31,7 @@ Route::middleware(['web', 'auth', 'has_workspace'])->group(function () {
     Route::post('/attendance/start-break', [AttendanceController::class, 'startBreak'])->name('attendance.start-break');
     Route::post('/attendance/end-break', [AttendanceController::class, 'endBreak'])->name('attendance.end-break');
     Route::get('/attendance/current-status', [AttendanceController::class, 'getCurrentStatus'])->name('attendance.current-status');
+    Route::get('/attendance/weekly-summary', [AttendanceController::class, 'getWeeklySummary'])->name('attendance.weekly-summary');
     Route::post('/attendance/{attendance}/approve', [AttendanceController::class, 'approve'])->name('attendance.approve');
     Route::get('/attendance/statistics', [AttendanceController::class, 'getStatistics'])->name('attendance.statistics');
     Route::get('/attendance/reports', [AttendanceController::class, 'reports'])->name('attendance.reports');
@@ -48,5 +49,8 @@ Route::middleware(['web', 'auth', 'has_workspace'])->group(function () {
         return view('attendance.help'); 
     })->name('attendance.help');
 });
+
+
+
 
 

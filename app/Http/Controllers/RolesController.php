@@ -18,12 +18,35 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 class RolesController extends Controller
 {
     /**
+     * Ensure all configured permissions exist for the web guard.
+     */
+    private function ensurePermissionsSynced(): void
+    {
+        try {
+            // Access control permission
+            Permission::firstOrCreate(['name' => 'access_all_data', 'guard_name' => 'web']);
+
+            $modules = config('taskhub.permissions', []);
+            foreach ($modules as $module => $permissions) {
+                foreach ($permissions as $permissionName) {
+                    Permission::firstOrCreate([
+                        'name' => $permissionName,
+                        'guard_name' => 'web',
+                    ]);
+                }
+            }
+        } catch (\Throwable $e) {
+            // Silently ignore to avoid breaking UI if DB not ready
+        }
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
+        $this->ensurePermissionsSynced();
         $roles = Role::all();
         return view('settings.permission_settings', ['roles' => $roles]);
     }
@@ -35,7 +58,7 @@ class RolesController extends Controller
      */
     public function create()
     {
-
+        $this->ensurePermissionsSynced();
         $projects = Permission::where('name', 'like', '%projects%')->get()->sortBy('name');
         $tasks = Permission::where('name', 'like', '%tasks%')->get()->sortBy('name');
         $users = Permission::where('name', 'like', '%users%')->get()->sortBy('name');
@@ -95,7 +118,7 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
-
+        $this->ensurePermissionsSynced();
         $role = Role::findOrFail($id);
         $role_permissions = $role->permissions;
         $guard = $role->guard_name == 'client' ? 'client' : 'web';

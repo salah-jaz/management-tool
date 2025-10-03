@@ -238,9 +238,14 @@
 
         // Load current break status
         function loadBreakStatus() {
+            console.log('Loading break status...');
             fetch('{{ route("attendance.current-status") }}')
-                .then(response => response.json())
+                .then(response => {
+                    console.log('Response status:', response.status);
+                    return response.json();
+                })
                 .then(data => {
+                    console.log('API Response:', data);
                     currentBreakStatus = data.status;
                     updateBreakUI(data);
                     updateBreakSummary(data.attendance);
@@ -416,8 +421,10 @@
 
         // Update breaks table
         function updateBreaksTable(attendance) {
+            console.log('updateBreaksTable called with:', attendance);
             const tbody = document.getElementById('breaksTableBody');
             if (!attendance || !attendance.breaks || attendance.breaks.length === 0) {
+                console.log('No breaks found, showing empty message');
                 tbody.innerHTML = `
                     <tr>
                         <td colspan="7" class="text-center text-muted py-4">
@@ -430,6 +437,8 @@
                 `;
                 return;
             }
+
+            console.log('Found breaks:', attendance.breaks.length);
 
             let html = '';
             attendance.breaks.forEach(breakItem => {

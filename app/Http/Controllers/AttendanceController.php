@@ -67,11 +67,54 @@ class AttendanceController extends Controller
         $users = $this->workspace->users;
         $settings = AttendanceSetting::forWorkspace($this->workspace->id)->first();
 
-        // Calculate total hours
+        // Calculate total hours (fallback to computed minutes when stored total is null/zero)
         $totalHours = $attendances->sum(function($attendance) {
-            if (!$attendance->total_work_hours) return 0;
-            $time = strtotime($attendance->total_work_hours) - strtotime('00:00:00');
-            return $time / 3600; // Convert to hours
+            if ($attendance->total_work_hours) {
+                $seconds = max(0, strtotime($attendance->total_work_hours) - strtotime('00:00:00'));
+                if ($seconds > 0) {
+                    return $seconds / 3600;
+                }
+            }
+
+            if ($attendance->check_in_time && $attendance->check_out_time) {
+                $date = $attendance->attendance_date instanceof \Carbon\Carbon
+                    ? $attendance->attendance_date->format('Y-m-d')
+                    : (string) $attendance->attendance_date;
+
+                $inStr = $attendance->check_in_time instanceof \Carbon\Carbon
+                    ? $attendance->check_in_time->format('H:i:s')
+                    : (string) $attendance->check_in_time;
+
+                $outStr = $attendance->check_out_time instanceof \Carbon\Carbon
+                    ? $attendance->check_out_time->format('H:i:s')
+                    : (string) $attendance->check_out_time;
+
+                $in = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $date.' '.$inStr);
+                $out = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $date.' '.$outStr);
+                if ($out->lt($in)) {
+                    $out->addDay();
+                }
+                $totalMinutes = max(0, (int) $in->diffInMinutes($out));
+
+                // Sum break durations if relation is loaded
+                if ($attendance->relationLoaded('breaks')) {
+                    $breakSeconds = $attendance->breaks
+                        ->where('break_status', 'completed')
+                        ->sum(function ($break) {
+                            $duration = (string) ($break->break_duration ?? '00:00:00');
+                            return max(0, strtotime($duration) - strtotime('00:00:00'));
+                        });
+                } else {
+                    $breakSeconds = (int) $attendance->breaks()
+                        ->where('break_status', 'completed')
+                        ->sum(\Illuminate\Support\Facades\DB::raw('TIME_TO_SEC(break_duration)'));
+                }
+
+                $workMinutes = max(0, $totalMinutes - (int) round($breakSeconds / 60));
+                return $workMinutes / 60;
+            }
+
+            return 0;
         });
 
         return view('attendance.index', compact('attendances', 'users', 'settings', 'totalHours'));
@@ -263,6 +306,12 @@ class AttendanceController extends Controller
      */
     public function checkIn(Request $request)
     {
+        if (!$this->workspace || !$this->user) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Workspace or user not resolved. Please reselect a workspace and try again.'
+            ], 422);
+        }
         $today = Carbon::today();
         
         // Check if already checked in today
@@ -348,6 +397,12 @@ class AttendanceController extends Controller
      */
     public function checkOut(Request $request)
     {
+        if (!$this->workspace || !$this->user) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Workspace or user not resolved. Please reselect a workspace and try again.'
+            ], 422);
+        }
         $today = Carbon::today();
         
         $attendance = Attendance::forWorkspace($this->workspace->id)
@@ -412,11 +467,15 @@ class AttendanceController extends Controller
      */
     public function startBreak(Request $request)
     {
-        $today = Carbon::today();
+        $todayString = Carbon::now(config('app.timezone'))->toDateString();
         
-        $attendance = Attendance::forWorkspace($this->workspace->id)
+        $workspaceId = $this->workspace ? $this->workspace->id : null;
+        $attendance = Attendance::query()
+            ->when($workspaceId, function ($q) use ($workspaceId) {
+                return $q->forWorkspace($workspaceId);
+            })
             ->forUser($this->user->id)
-            ->forDate($today)
+            ->forDate($todayString)
             ->first();
 
         if (!$attendance || !$attendance->check_in_time) {
@@ -442,16 +501,20 @@ class AttendanceController extends Controller
             ]);
         }
 
-        $break = AttendanceBreak::create([
+        $breakData = [
             'attendance_id' => $attendance->id,
-            'workspace_id' => $this->workspace->id,
+            'workspace_id' => $workspaceId,
             'user_id' => $this->user->id,
             'break_type' => $request->break_type ?? 'other',
-            'break_start_time' => now()->format('H:i:s'),
+            'break_start_time' => now(config('app.timezone'))->format('H:i:s'),
             'break_reason' => $request->break_reason,
             'break_status' => 'active',
             'is_approved' => !$this->requiresBreakApproval(),
-        ]);
+        ];
+
+        \Log::info('Creating break', $breakData);
+        
+        $break = AttendanceBreak::create($breakData);
 
         return response()->json([
             'success' => true,
@@ -465,11 +528,15 @@ class AttendanceController extends Controller
      */
     public function endBreak(Request $request)
     {
-        $today = Carbon::today();
+        $todayString = Carbon::now(config('app.timezone'))->toDateString();
         
-        $attendance = Attendance::forWorkspace($this->workspace->id)
+        $workspaceId = $this->workspace ? $this->workspace->id : null;
+        $attendance = Attendance::query()
+            ->when($workspaceId, function ($q) use ($workspaceId) {
+                return $q->forWorkspace($workspaceId);
+            })
             ->forUser($this->user->id)
-            ->forDate($today)
+            ->forDate($todayString)
             ->first();
 
         if (!$attendance) {
@@ -504,31 +571,144 @@ class AttendanceController extends Controller
      */
     public function getCurrentStatus()
     {
-        $today = Carbon::today();
+        $todayString = Carbon::now(config('app.timezone'))->toDateString();
         
-        $attendance = Attendance::forWorkspace($this->workspace->id)
+        $workspaceId = $this->workspace ? $this->workspace->id : null;
+
+        $query = Attendance::query()
             ->forUser($this->user->id)
-            ->forDate($today)
-            ->with('breaks')
+            ->with('breaks');
+
+        $attendance = (clone $query)
+            ->forDate($todayString)
             ->first();
+        
+        // Only show today's attendance, don't fallback to previous days
+        if (!$attendance) {
+            \Log::info('Attendance tracker: no record found for today', [
+                'user_id' => $this->user ? $this->user->id : null,
+                'workspace_id' => $workspaceId,
+                'today' => $todayString,
+            ]);
+        }
 
         $activeBreak = $attendance ? $attendance->breaks()->active()->first() : null;
 
-        $response = [
-            'attendance' => $attendance,
-            'active_break' => $activeBreak,
-            'status' => $this->getAttendanceStatus($attendance, $activeBreak)
-        ];
-
-        // Add formatted fields for dashboard display
+        $attendanceData = null;
         if ($attendance) {
-            $response['attendance']['check_in_time_formatted'] = $attendance->check_in_time_formatted ?? '--:--';
-            $response['attendance']['check_out_time_formatted'] = $attendance->check_out_time_formatted ?? '--:--';
-            $response['attendance']['total_work_hours_formatted'] = $attendance->total_work_hours_formatted ?? '00:00';
-            $response['attendance']['total_break_hours_formatted'] = $attendance->total_break_hours_formatted ?? '00:00';
+            $breakSeconds = $attendance->breaks->where('break_status', 'completed')->sum(function ($break) {
+                $duration = (string) ($break->break_duration ?? '00:00:00');
+                return max(0, strtotime($duration) - strtotime('00:00:00'));
+            });
+            $breakMinutes = (int) round($breakSeconds / 60);
+
+            $attendanceData = [
+                'id' => $attendance->id,
+                'attendance_date' => $attendance->attendance_date ? $attendance->attendance_date->format('Y-m-d') : null,
+                'check_in_time' => $attendance->check_in_time,
+                'check_out_time' => $attendance->check_out_time,
+                'check_in_time_formatted' => $attendance->check_in_time_formatted ?? '--:--',
+                'check_out_time_formatted' => $attendance->check_out_time_formatted ?? '--:--',
+                'computed_work_hours_formatted' => $attendance->computed_work_hours_formatted ?? '00:00',
+                'total_work_hours_formatted' => $attendance->computed_work_hours_formatted ?? '00:00',
+                'total_break_hours_formatted' => sprintf('%02d:%02d', intdiv($breakMinutes, 60), $breakMinutes % 60),
+                'breaks' => $attendance->breaks->map(function($b) {
+                    return [
+                        'id' => $b->id,
+                        'break_type' => $b->break_type,
+                        'break_status' => $b->break_status,
+                        'break_start_time_formatted' => $b->break_start_time_formatted,
+                        'break_end_time_formatted' => $b->break_end_time_formatted,
+                        'break_duration_formatted' => $b->break_duration_formatted,
+                        'status_badge' => $b->status_badge,
+                        'type_badge' => $b->type_badge,
+                        'break_reason' => $b->break_reason,
+                    ];
+                })->values(),
+            ];
         }
 
-        return response()->json($response);
+        $status = $attendance ? $this->getAttendanceStatus($attendance, $activeBreak) : 'not_checked_in';
+
+        return response()->json([
+            'attendance' => $attendanceData,
+            'active_break' => $activeBreak ? [
+                'id' => $activeBreak->id,
+                'break_type' => $activeBreak->break_type,
+                'break_start_time_formatted' => $activeBreak->break_start_time_formatted,
+            ] : null,
+            'status' => $status
+        ]);
+    }
+
+    /**
+     * Get weekly summary for tracker.
+     */
+    public function getWeeklySummary()
+    {
+        $startOfWeek = Carbon::now(config('app.timezone'))->startOfWeek();
+        $endOfWeek = Carbon::now(config('app.timezone'))->endOfWeek();
+
+        $workspaceId = $this->workspace ? $this->workspace->id : null;
+        
+        $query = Attendance::query()
+            ->when($workspaceId, function ($q) use ($workspaceId) {
+                return $q->forWorkspace($workspaceId);
+            })
+            ->forUser($this->user->id)
+            ->with('breaks')
+            ->whereBetween('attendance_date', [$startOfWeek->format('Y-m-d'), $endOfWeek->format('Y-m-d')]);
+
+        $attendances = $query->get();
+
+        $totalWorkMinutes = 0;
+        $totalBreakMinutes = 0;
+        $daysPresent = 0;
+        $overtimeHours = 0;
+
+        foreach ($attendances as $attendance) {
+            if ($attendance->status === 'present' || $attendance->status === 'late' || $attendance->status === 'half_day') {
+                $daysPresent++;
+            }
+
+            // Work minutes
+            if ($attendance->total_work_hours) {
+                $sec = max(0, strtotime($attendance->total_work_hours) - strtotime('00:00:00'));
+                $totalWorkMinutes += (int) round($sec / 60);
+            } elseif ($attendance->check_in_time && $attendance->check_out_time) {
+                $date = $attendance->attendance_date instanceof Carbon ? $attendance->attendance_date->format('Y-m-d') : (string) $attendance->attendance_date;
+                $in = Carbon::createFromFormat('Y-m-d H:i:s', $date.' '.(string)$attendance->check_in_time);
+                $out = Carbon::createFromFormat('Y-m-d H:i:s', $date.' '.(string)$attendance->check_out_time);
+                if ($out->lt($in)) {
+                    $out->addDay();
+                }
+                $mins = max(0, $in->diffInMinutes($out));
+                $breakMins = (int) round(($attendance->breaks->where('break_status', 'completed')->sum(function ($b) {
+                    $dur = (int) ($b->break_duration ?? 0);
+                    return $dur * 60; // seconds
+                })) / 60);
+                $totalWorkMinutes += max(0, $mins - $breakMins);
+            }
+
+            // Break minutes
+            if ($attendance->total_break_hours) {
+                $sec = max(0, strtotime($attendance->total_break_hours) - strtotime('00:00:00'));
+                $totalBreakMinutes += (int) round($sec / 60);
+            } else {
+                $totalBreakMinutes += (int) $attendance->breaks->where('break_status', 'completed')->sum('break_duration');
+            }
+
+            $overtimeHours += (float) ($attendance->overtime_hours ?? 0);
+        }
+
+        $summary = [
+            'days_present' => $daysPresent,
+            'total_work' => sprintf('%02d:%02d', intdiv($totalWorkMinutes, 60), $totalWorkMinutes % 60),
+            'total_break' => sprintf('%02d:%02d', intdiv($totalBreakMinutes, 60), $totalBreakMinutes % 60),
+            'overtime_hours' => round($overtimeHours, 2),
+        ];
+
+        return response()->json(['success' => true, 'summary' => $summary]);
     }
 
     /**
@@ -548,22 +728,26 @@ class AttendanceController extends Controller
         $checkIn = Carbon::parse($attendance->check_in_time);
         $checkOut = Carbon::parse($attendance->check_out_time);
         
-        // Calculate total break time
-        $totalBreakMinutes = $attendance->breaks()
-            ->where('break_status', 'completed')
-            ->sum(DB::raw('TIME_TO_SEC(break_duration)')) / 60;
-        
-        // Calculate work hours
-        $totalMinutes = $checkOut->diffInMinutes($checkIn);
-        $workMinutes = $totalMinutes - $totalBreakMinutes;
-        
-        $workHours = floor($workMinutes / 60);
+        // Calculate total break time (in whole minutes)
+        $totalBreakMinutes = (int) round(
+            $attendance->breaks()
+                ->where('break_status', 'completed')
+                ->sum(DB::raw('TIME_TO_SEC(break_duration)')) / 60
+        );
+
+        // Calculate work minutes and clamp to non-negative
+        $totalMinutes = max(0, (int) $checkOut->diffInMinutes($checkIn));
+        $workMinutes = max(0, $totalMinutes - $totalBreakMinutes);
+
+        // Normalize hours/minutes (all non-negative)
+        $workHours = intdiv($workMinutes, 60);
         $workMinutesRemainder = $workMinutes % 60;
-        
-        $breakHours = floor($totalBreakMinutes / 60);
-        $breakMinutesRemainder = $totalBreakMinutes % 60;
-        
-        $netHours = floor($workMinutes / 60);
+
+        $breakMinutesClamped = max(0, $totalBreakMinutes);
+        $breakHours = intdiv($breakMinutesClamped, 60);
+        $breakMinutesRemainder = $breakMinutesClamped % 60;
+
+        $netHours = intdiv($workMinutes, 60);
         $netMinutesRemainder = $workMinutes % 60;
 
         $updateData = [
@@ -688,7 +872,7 @@ class AttendanceController extends Controller
         $attendance->update([
             'is_approved' => true,
             'approved_by' => $this->user->id,
-            'approval_date' => now(),
+            'approved_at' => now(),
             'approval_notes' => $request->approval_notes,
         ]);
 
